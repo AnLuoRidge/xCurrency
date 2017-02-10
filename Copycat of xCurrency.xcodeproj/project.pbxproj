@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		D99A169C1E4C8E99001AD0F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */; };
-		D99A169E1E4C8E99001AD0F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169D1E4C8E99001AD0F4 /* ViewController.swift */; };
-		D99A16A11E4C8E9A001AD0F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D99A169F1E4C8E9A001AD0F4 /* Main.storyboard */; };
+		D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */; };
 		D99A16A31E4C8E9A001AD0F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */; };
 		D99A16A61E4C8E9A001AD0F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D99A16A41E4C8E9A001AD0F4 /* LaunchScreen.storyboard */; };
 		D99A16B11E4C8E9C001AD0F4 /* Copycat_of_xCurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16B01E4C8E9C001AD0F4 /* Copycat_of_xCurrencyTests.swift */; };
 		D99A16BC1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16BB1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift */; };
+		D99A16CA1E4C913E001AD0F4 /* CXCKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */; };
+		D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */; };
+		D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */; };
+		D9F6CE911E4D89CC002E7424 /* CXCCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +39,7 @@
 /* Begin PBXFileReference section */
 		D99A16981E4C8E99001AD0F4 /* Copycat of xCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Copycat of xCurrency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D99A169D1E4C8E99001AD0F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D99A16A01E4C8E9A001AD0F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CXCMainViewController.swift; sourceTree = "<group>"; };
 		D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D99A16A51E4C8E9A001AD0F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D99A16A71E4C8E9A001AD0F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +49,10 @@
 		D99A16B71E4C8E9C001AD0F4 /* Copycat of xCurrencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Copycat of xCurrencyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99A16BB1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copycat_of_xCurrencyUITests.swift; sourceTree = "<group>"; };
 		D99A16BD1E4C8E9C001AD0F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCKeyboardView.swift; sourceTree = "<group>"; };
+		D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainTableViewController.swift; sourceTree = "<group>"; };
+		D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainTableViewCell.swift; sourceTree = "<group>"; };
+		D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCCurrencyModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */,
-				D99A169D1E4C8E99001AD0F4 /* ViewController.swift */,
-				D99A169F1E4C8E9A001AD0F4 /* Main.storyboard */,
+				D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */,
+				D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */,
+				D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */,
+				D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */,
+				D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */,
 				D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */,
 				D99A16A41E4C8E9A001AD0F4 /* LaunchScreen.storyboard */,
 				D99A16A71E4C8E9A001AD0F4 /* Info.plist */,
@@ -193,6 +202,7 @@
 				TargetAttributes = {
 					D99A16971E4C8E96001AD0F4 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 3W9HSTAQPK;
 						ProvisioningStyle = Automatic;
 					};
 					D99A16AB1E4C8E9C001AD0F4 = {
@@ -234,7 +244,6 @@
 			files = (
 				D99A16A61E4C8E9A001AD0F4 /* LaunchScreen.storyboard in Resources */,
 				D99A16A31E4C8E9A001AD0F4 /* Assets.xcassets in Resources */,
-				D99A16A11E4C8E9A001AD0F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D99A169E1E4C8E99001AD0F4 /* ViewController.swift in Sources */,
+				D99A16CA1E4C913E001AD0F4 /* CXCKeyboardView.swift in Sources */,
+				D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */,
+				D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */,
+				D9F6CE911E4D89CC002E7424 /* CXCCurrencyModel.swift in Sources */,
+				D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */,
 				D99A169C1E4C8E99001AD0F4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,14 +309,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D99A169F1E4C8E9A001AD0F4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D99A16A01E4C8E9A001AD0F4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D99A16A41E4C8E9A001AD0F4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -412,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3W9HSTAQPK;
 				INFOPLIST_FILE = "Copycat of xCurrency/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anluoridge.Copycat-of-xCurrency";
@@ -424,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3W9HSTAQPK;
 				INFOPLIST_FILE = "Copycat of xCurrency/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anluoridge.Copycat-of-xCurrency";
@@ -505,6 +512,7 @@
 				D99A16C21E4C8E9D001AD0F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D99A16C31E4C8E9D001AD0F4 /* Build configuration list for PBXNativeTarget "Copycat of xCurrencyTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +521,7 @@
 				D99A16C51E4C8E9D001AD0F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D99A16C61E4C8E9D001AD0F4 /* Build configuration list for PBXNativeTarget "Copycat of xCurrencyUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +530,7 @@
 				D99A16C81E4C8E9D001AD0F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
