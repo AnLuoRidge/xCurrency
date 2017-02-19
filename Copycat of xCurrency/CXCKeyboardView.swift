@@ -172,7 +172,7 @@ class CXCKeyboardView: UIView {
     
     func setupConstraints() {
         let btnWidth =  screenWidth / 4// self.bounds.width
-        let btnHeight = (screenHeight - 400) / 4// self.bounds.height
+        let btnHeight = 280 / 4 * yppi// self.bounds.height
         
         // 7
         sevenBtn.snp.makeConstraints { (make) in

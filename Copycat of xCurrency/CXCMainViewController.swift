@@ -28,6 +28,7 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         let indexPath = IndexPath.init(row: tf.tag - 1000, section: 0)
         return tableViewVC.tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
     }
+    
     var respondingTextField: UITextField? {
         for tf in tableViewVC.textFields {
             if tf.isFirstResponder {
@@ -36,6 +37,7 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         }
         return nil
     }
+    
     var previousRespondingTextField = UITextField()
     //var respondingTextField: UITextField?
     //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -58,9 +60,16 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     //        //self.keyboardView = CXCKeyboardView.init(delegate: self)
     //        super.init(coder: aDecoder)
     //    }
+    lazy var leftNaviBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem.init(image: UIImage.init(named: "btn_setting"), style: .plain, target: self, action: nil)
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
+        self.title = NSLocalizedString("极简汇率", comment: "comment")
+self.navigationItem.leftBarButtonItem = leftNaviBtn
         self.view.backgroundColor = .white
         keyboardView = CXCKeyboardView.init(delegate: self)
         self.view.addSubview(keyboardView!)
@@ -77,13 +86,13 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
                     //if JSONSerialization.isValidJSONObject(data) {
                     let dict1 = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
                     
-                    let json = dict1["list"]! as! [String:Any];
+                    let list = dict1["list"]! as! [String:Any];
                     //let json1 = json["resources"] as! [[String:Any]];
-                    for dict in json["resources"] as! [[String:Any]] {
-                        let json2 = dict["resource"]! as! [String:Any];
-                        let json3 = json2["fields"] as! [String:String];
-                        if let price = json3["price"] {
-                            if let name = json3["name"] {
+                    for dict in list["resources"] as! [[String:Any]] {
+                        let resource = dict["resource"]! as! [String:Any];
+                        let fields = resource["fields"] as! [String:String];
+                        if let price = fields["price"] {
+                            if let name = fields["name"] {
                                 currentCurrencyDict.updateValue(Float(price)!, forKey: name)
                             }
                         }
@@ -97,7 +106,8 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
             }
             
         }
-        task.resume()
+        // TODO: open
+        //task.resume()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -166,16 +176,16 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         }
         print("------")
     }
-    
+    static let keyboardHeight: CGFloat = CGFloat(280.0.yppi)
     func setupConstraints() {
-        tableViewVC.view.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(self.view)
-            make.height.equalTo(400)
-        }
-        
         keyboardView!.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(tableViewVC.tableView.snp.bottom)
+            make.height.equalTo(280.0.yppi)
+        }
+        
+        tableViewVC.view.snp.makeConstraints { make in
+            make.left.right.top.equalTo(self.view)
+            make.bottom.equalTo(keyboardView!.snp.top)
         }
     }
     

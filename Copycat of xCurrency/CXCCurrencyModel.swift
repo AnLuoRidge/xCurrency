@@ -17,6 +17,52 @@ enum Currency: String  {
 
 let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height
+let xppi = screenWidth / 375
+let yppi = screenHeight / 667
+
+//extension Float {
+//    static let widthUnit = Float(screenWidth / 375)
+//    static let heightUnit = Float(screenHeight / 667)
+//    var xppi:Float {
+//        return self * .widthUnit
+//    }
+//    var yppi:Float {
+//        return self * .heightUnit
+//    }
+//}
+
+//extension CGFloat {
+//    static let widthUnit = screenWidth / 375
+//    static let heightUnit = screenHeight / 667
+//    var xppi:CGFloat {
+//        return self * .widthUnit
+//    }
+//    var yppi:CGFloat {
+//        return self * .heightUnit
+//    }
+//}
+
+extension Double {
+    static let widthUnit = CGFloat(screenWidth / 375)
+    static let heightUnit = CGFloat(screenHeight / 667)
+    var xppi:CGFloat {
+        return CGFloat(self) * Double.widthUnit
+    }
+    var yppi:CGFloat {
+        return CGFloat(self) * Double.heightUnit
+    }
+}
+
+extension Int {
+    static let widthUnit = CGFloat(screenWidth / 375)
+    static let heightUnit = CGFloat(screenHeight / 667)
+    var xppi:CGFloat {
+        return CGFloat(self) * Int.widthUnit
+    }
+    var yppi:CGFloat {
+        return CGFloat(self) * Int.heightUnit
+    }
+}
 
 let fullNameDict = ["CNY":"China", "USD": "United", "AUD":"Australia", "JPY": "Japan"]
 

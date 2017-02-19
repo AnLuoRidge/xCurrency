@@ -9,11 +9,16 @@
 import UIKit
 
 class CXCMainNavigationController: UINavigationController {
+    
+//    lazy var leftBtn: UIBarButtonItem = {
+//    let btn = UIBarButtonItem.init(image: UIImage.init(named: "btn_setting"), style: .plain, target: self, action: nil)
+//        return btn
+//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//        self.navigationItem.leftBarButtonItem = leftBtn
+        self.pushViewController(CXCMainViewController(), animated: true)
     }
 
     override func didReceiveMemoryWarning() {

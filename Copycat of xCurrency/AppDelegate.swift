@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = window!
         self.window?.backgroundColor = .white
-        self.window?.rootViewController = CXCMainViewController()
+        self.window?.rootViewController = CXCMainNavigationController()
         self.window?.makeKeyAndVisible()
 
         return true
