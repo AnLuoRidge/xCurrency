@@ -8,13 +8,23 @@
 
 import UIKit
 
+let cellReuseIdentifier = "reuseCell"
+
 class CXCMainTableViewController: UITableViewController {
 
+    var cells = [CXCMainTableViewCell]()
+    var textFields = [UITextField]()
+    var textFieldIndex = 1000
+    // DEBUG
+    let testCurrencis = [Currency.CNY, Currency.USD, Currency.AUD, Currency.JPY]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        self.tableView.register(CXCMainTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        //self.tableView.set
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -29,23 +39,45 @@ class CXCMainTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 4
     }
 
-    /*
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        if let point = touches.first?.location(in: self.tableView) {
+//            let cell = tableView.cellForRow(at: tableView.indexPathForRow(at: point)!)
+//            print(cell.)
+//        }
+//    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell: CXCMainTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CXCMainTableViewCell
+        //cell.numTextField.delegate = self.presentingViewController as! UITextFieldDelegate?
+        cell.numTextField.tag = textFieldIndex
+        textFieldIndex += 1
+        cells.append(cell)
+        textFields.append(cell.numTextField)
 
+        // DEBUG
+        let entity = CXCCurrencyModel.init(currency: testCurrencis[indexPath.row])
+        cell.rate = Float(textFieldIndex - 999)
+        // DEBUG
+        cell.configureCell(entity: entity)
+//self.presentingViewController
         // Configure the cell...
+    //cell.contentView.backgroundColor = .blue
 
         return cell
     }
-    */
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
+    }
 
     /*
     // Override to support conditional editing of the table view.

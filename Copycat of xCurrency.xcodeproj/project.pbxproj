@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29310B29F7E0072304B90D35 /* Pods_Copycat_of_xCurrency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6AFA7B6EABB7B5959C74DC4 /* Pods_Copycat_of_xCurrency.framework */; };
+		D956B9A01E5947600069AC67 /* CXCMainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B99F1E59475E0069AC67 /* CXCMainNavigationController.swift */; };
 		D99A169C1E4C8E99001AD0F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */; };
 		D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */; };
 		D99A16A31E4C8E9A001AD0F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */; };
@@ -37,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41A4BBE7F8CD27402BB031D7 /* Pods-Copycat of xCurrency.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Copycat of xCurrency.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Copycat of xCurrency/Pods-Copycat of xCurrency.debug.xcconfig"; sourceTree = "<group>"; };
+		A1E5CFDAA6949B71708FB653 /* Pods-Copycat of xCurrency.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Copycat of xCurrency.release.xcconfig"; path = "Pods/Target Support Files/Pods-Copycat of xCurrency/Pods-Copycat of xCurrency.release.xcconfig"; sourceTree = "<group>"; };
+		D6AFA7B6EABB7B5959C74DC4 /* Pods_Copycat_of_xCurrency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Copycat_of_xCurrency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D956B99F1E59475E0069AC67 /* CXCMainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainNavigationController.swift; sourceTree = "<group>"; };
 		D99A16981E4C8E99001AD0F4 /* Copycat of xCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Copycat of xCurrency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CXCMainViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29310B29F7E0072304B90D35 /* Pods_Copycat_of_xCurrency.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +87,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02E40FAC35E7488A99B7A09C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6AFA7B6EABB7B5959C74DC4 /* Pods_Copycat_of_xCurrency.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		602EBECD8967F4796D4E1C92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41A4BBE7F8CD27402BB031D7 /* Pods-Copycat of xCurrency.debug.xcconfig */,
+				A1E5CFDAA6949B71708FB653 /* Pods-Copycat of xCurrency.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D99A168F1E4C8E94001AD0F4 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +111,8 @@
 				D99A16AF1E4C8E9C001AD0F4 /* Copycat of xCurrencyTests */,
 				D99A16BA1E4C8E9C001AD0F4 /* Copycat of xCurrencyUITests */,
 				D99A16991E4C8E99001AD0F4 /* Products */,
+				602EBECD8967F4796D4E1C92 /* Pods */,
+				02E40FAC35E7488A99B7A09C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */,
+				D956B99F1E59475E0069AC67 /* CXCMainNavigationController.swift */,
 				D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */,
 				D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */,
 				D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */,
@@ -141,9 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D99A16C01E4C8E9D001AD0F4 /* Build configuration list for PBXNativeTarget "Copycat of xCurrency" */;
 			buildPhases = (
+				5C3848D60272E0A107006537 /* [CP] Check Pods Manifest.lock */,
 				D99A16941E4C8E96001AD0F4 /* Sources */,
 				D99A16951E4C8E96001AD0F4 /* Frameworks */,
 				D99A16961E4C8E96001AD0F4 /* Resources */,
+				390C1D9A725E199C162D421F /* [CP] Embed Pods Frameworks */,
+				50C83910963FEB3C3204127B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,11 +293,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		390C1D9A725E199C162D421F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Copycat of xCurrency/Pods-Copycat of xCurrency-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50C83910963FEB3C3204127B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Copycat of xCurrency/Pods-Copycat of xCurrency-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C3848D60272E0A107006537 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D99A16941E4C8E96001AD0F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D956B9A01E5947600069AC67 /* CXCMainNavigationController.swift in Sources */,
 				D99A16CA1E4C913E001AD0F4 /* CXCKeyboardView.swift in Sources */,
 				D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */,
 				D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */,
@@ -415,6 +494,7 @@
 		};
 		D99A16C11E4C8E9D001AD0F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41A4BBE7F8CD27402BB031D7 /* Pods-Copycat of xCurrency.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3W9HSTAQPK;
@@ -428,6 +508,7 @@
 		};
 		D99A16C21E4C8E9D001AD0F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1E5CFDAA6949B71708FB653 /* Pods-Copycat of xCurrency.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3W9HSTAQPK;

@@ -11,17 +11,15 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    var window: UIWindow? = UIWindow.init(frame: UIScreen.main.bounds)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        let ccc = CXCMainViewController()
-        let fomulaTextField = UITextField()
-        var text = fomulaTextField.text
-        text = "d"
-        text = "d"
-        print(fomulaTextField.text!)
+        
+        self.window = window!
+        self.window?.backgroundColor = .white
+        self.window?.rootViewController = CXCMainViewController()
+        self.window?.makeKeyAndVisible()
+
         return true
     }
 

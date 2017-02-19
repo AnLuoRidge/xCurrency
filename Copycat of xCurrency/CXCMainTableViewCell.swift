@@ -9,21 +9,38 @@
 import UIKit
 
 class CXCMainTableViewCell: UITableViewCell {
-
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
+    
+    //    override func awakeFromNib() {
+    //        super.awakeFromNib()
+    //        // Initialization code
+    //    }
     var flagImageView = UIImageView()
     var currencyLabel = UILabel()
     var fomulaTextField = UITextField()
-    var numTextField = UITextField()
-    var fullNameLabel = UILabel()
-    var rate: Float = 1.0
+    lazy var numTextField: UITextField =  {
+        //get {
+        let tf = UITextField()
+        return tf
+    }()
+    var fullNameLabel: UILabel {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12.0)
+        return label
 
+    }
+    var rate: Float = 1.0
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.contentView.addSubview(flagImageView)
+        self.contentView.addSubview(currencyLabel)
+        self.contentView.addSubview(fullNameLabel)
+        self.contentView.addSubview(numTextField)
+        
+        
+        setupConstraints()
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -31,21 +48,27 @@ class CXCMainTableViewCell: UITableViewCell {
     
     internal func configureCell(entity: CXCCurrencyModel) {
         flagImageView.image = entity.flagImage
-//        currencyLabel = UILabel()
+        //        currencyLabel = UILabel()
         currencyLabel.text = entity.currency
         fullNameLabel.text = entity.fullName
-        
     }
     
-//    init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-//        <#code#>
-//    }
+    func setupConstraints() {
+        flagImageView.frame = CGRect.init(x: 20, y: 30, width: 30, height: 30)
+        currencyLabel.frame = CGRect.init(x: 60, y: 30, width: 50, height: 15)
+        fullNameLabel.frame = CGRect.init(x: 300, y: 10, width: 30, height: 20)
+        numTextField.frame = CGRect.init(x: 250, y: 15, width: 60, height: 15)
+    }
     
-
+    //    init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    //        <#code#>
+    //    }
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }
