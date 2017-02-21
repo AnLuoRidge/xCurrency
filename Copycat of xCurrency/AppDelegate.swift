@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = window!
         self.window?.backgroundColor = .white
-        self.window?.rootViewController = CXCMainNavigationController()
+        self.window?.rootViewController = CXCHistoricalRateViewController()
         self.window?.makeKeyAndVisible()
 
         return true

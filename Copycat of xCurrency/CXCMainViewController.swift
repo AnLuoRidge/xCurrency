@@ -69,7 +69,7 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
         self.title = NSLocalizedString("极简汇率", comment: "comment")
-self.navigationItem.leftBarButtonItem = leftNaviBtn
+        self.navigationItem.leftBarButtonItem = leftNaviBtn
         self.view.backgroundColor = .white
         keyboardView = CXCKeyboardView.init(delegate: self)
         self.view.addSubview(keyboardView!)
@@ -118,52 +118,70 @@ self.navigationItem.leftBarButtonItem = leftNaviBtn
             // If user turns to another text field
             if previousRespondingTextField != respondingTF {
                 previousRespondingTextField = respondingTF
-                // update rates
-                focusedCell.rate = 1.0
+                updateRates(focusedCell: focusedCell)
+            }
+            /*
+             add
+             add, anyway
+             Only can have one dot!
+             del
+             删完为空就填 placeholder
+             删成 2. 就要自动补 0？
+             
+             */
+            //
+            
+            let key = sender.title(for: .normal)!
+            let val:Float?
+            
+            switch key {
+            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
+                val = Float(respondingTF.text! + key)!
+            case ".":
+                val = Float(respondingTF.text!)
+            case "del":
+                if respondingTF.text!.characters.count > 1 {
+                    let endIndex = respondingTF.text!.index(before: respondingTF.text!.endIndex)
+                    val = Float(respondingTF.text!.substring(to: endIndex))!
+                } else {
+                    val = nil
+                }
                 
+            default:
+                val = nil
+            }
+            
+            if let value = val {
                 for cell in tableViewVC.cells {
-                    // skip focused cell
-                    if cell != focusedCell {
-                        let currency = focusedCell.currencyLabel.text! + "/" + cell.currencyLabel.text!
-                        let reversedCurrency = cell.currencyLabel.text! + "/" + focusedCell.currencyLabel.text!
-                        
-                        if let rate = currentCurrencyDict[currency] {
-                            cell.rate = rate
+                    if cell == focusedCell {
+                        let previousText = cell.numTextField.text!
+                        if key != "del" {
+                            if !(respondingTF.text!.contains(".") && key == "."){
+                                cell.numTextField.text = previousText + key
+                            }
                         }
-                            // reverse
-                        else if let rate = currentCurrencyDict[reversedCurrency] {
-                            cell.rate = 1 / rate
-                        }
-                            // calculate cross-rate
                         else {
-                            let currenyOne = "USD/" + focusedCell.currencyLabel.text!
-                            let currencyTwo = "USD/" + cell.currencyLabel.text!
-                            let rate = 1 / currentCurrencyDict[currenyOne]! * currentCurrencyDict[currencyTwo]!
-                            cell.rate = Float(rate)
-                            currentCurrencyDict.updateValue(cell.rate, forKey: focusedCell.currencyLabel.text! + "/" + cell.currencyLabel.text!)
-                            //(1/美中) x 中日
+                            let endIndex = previousText.index(before: previousText.endIndex)
+                            cell.numTextField.text = previousText.substring(to: endIndex)
                         }
                     }
+                    else {
+                        cell.numTextField.text = String(value * cell.rate)
+                    }
+                }
+                // if clear
+            }
+            else {
+                for cell in tableViewVC.cells {
+                    cell.numTextField.text = nil
+                    if cell == focusedCell {
+                        cell.numTextField.placeholder = "100.0"
+                    }
+                    else {
+                        cell.numTextField.placeholder = String(100 * cell.rate)}
                 }
             }
             
-            let key = sender.title(for: .normal)!
-            let val:Float
-            if let lastNum = respondingTF.text {
-                val = Float(lastNum + key)!
-            } else {
-                val = Float(key)!
-            }
-            for cell in tableViewVC.cells {
-                if cell == focusedCell {
-                    if let previousText = cell.numTextField.text {
-                        cell.numTextField.text = previousText + key
-                    } else {
-                        cell.numTextField.text = key
-                    }
-                } else {
-                    cell.numTextField.text = String(val * cell.rate)}
-            }
         }
         
         //        responsingCell.numTextField.text = responsingCell.numTextField.text! + key
@@ -176,11 +194,41 @@ self.navigationItem.leftBarButtonItem = leftNaviBtn
         }
         print("------")
     }
-    static let keyboardHeight: CGFloat = CGFloat(280.0.yppi)
+    
+    func updateRates(focusedCell:CXCMainTableViewCell) {
+        // update rates
+        focusedCell.rate = 1.0
+        
+        for cell in tableViewVC.cells {
+            // skip focused cell
+            if cell != focusedCell {
+                let currency = focusedCell.currencyLabel.text! + "/" + cell.currencyLabel.text!
+                let reversedCurrency = cell.currencyLabel.text! + "/" + focusedCell.currencyLabel.text!
+                
+                if let rate = currentCurrencyDict[currency] {
+                    cell.rate = rate
+                }
+                    // reverse
+                else if let rate = currentCurrencyDict[reversedCurrency] {
+                    cell.rate = 1 / rate
+                }
+                    // calculate cross-rate
+                else {
+                    let currenyOne = "USD/" + focusedCell.currencyLabel.text!
+                    let currencyTwo = "USD/" + cell.currencyLabel.text!
+                    let rate = 1 / currentCurrencyDict[currenyOne]! * currentCurrencyDict[currencyTwo]!
+                    cell.rate = Float(rate)
+                    currentCurrencyDict.updateValue(cell.rate, forKey: focusedCell.currencyLabel.text! + "/" + cell.currencyLabel.text!)
+                    //(1/美中) x 中日
+                }
+            }
+        }
+    }
+    
     func setupConstraints() {
         keyboardView!.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(self.view)
-            make.height.equalTo(280.0.yppi)
+            make.height.equalTo(keyboardHeight)
         }
         
         tableViewVC.view.snp.makeConstraints { make in
@@ -191,9 +239,7 @@ self.navigationItem.leftBarButtonItem = leftNaviBtn
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
     
 }
 

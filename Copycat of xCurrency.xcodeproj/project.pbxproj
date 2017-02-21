@@ -10,6 +10,8 @@
 		29310B29F7E0072304B90D35 /* Pods_Copycat_of_xCurrency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6AFA7B6EABB7B5959C74DC4 /* Pods_Copycat_of_xCurrency.framework */; };
 		D956B9A01E5947600069AC67 /* CXCMainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B99F1E59475E0069AC67 /* CXCMainNavigationController.swift */; };
 		D956B9A31E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A21E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift */; };
+		D956B9A51E5C38190069AC67 /* CXCHistoricalRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A41E5C38180069AC67 /* CXCHistoricalRateView.swift */; };
+		D956B9A71E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A61E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift */; };
 		D99A169C1E4C8E99001AD0F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */; };
 		D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */; };
 		D99A16A31E4C8E9A001AD0F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		D6AFA7B6EABB7B5959C74DC4 /* Pods_Copycat_of_xCurrency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Copycat_of_xCurrency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D956B99F1E59475E0069AC67 /* CXCMainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainNavigationController.swift; sourceTree = "<group>"; };
 		D956B9A21E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCCurrencySelectionTableViewController.swift; sourceTree = "<group>"; };
+		D956B9A41E5C38180069AC67 /* CXCHistoricalRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCHistoricalRateView.swift; sourceTree = "<group>"; };
+		D956B9A61E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCHistoricalRateViewController.swift; sourceTree = "<group>"; };
 		D99A16981E4C8E99001AD0F4 /* Copycat of xCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Copycat of xCurrency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CXCMainViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */,
 				D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */,
 				D956B9A21E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift */,
+				D956B9A61E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift */,
+				D956B9A41E5C38180069AC67 /* CXCHistoricalRateView.swift */,
 				D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */,
 				D99A16A41E4C8E9A001AD0F4 /* LaunchScreen.storyboard */,
 				D99A16A71E4C8E9A001AD0F4 /* Info.plist */,
@@ -354,7 +360,9 @@
 				D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */,
 				D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */,
 				D9F6CE911E4D89CC002E7424 /* CXCCurrencyModel.swift in Sources */,
+				D956B9A51E5C38190069AC67 /* CXCHistoricalRateView.swift in Sources */,
 				D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */,
+				D956B9A71E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift in Sources */,
 				D956B9A31E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift in Sources */,
 				D99A169C1E4C8E99001AD0F4 /* AppDelegate.swift in Sources */,
 			);

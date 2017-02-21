@@ -9,10 +9,28 @@
 import UIKit
 
 class CXCCurrencySelectionTableViewController: UITableViewController {
+    static let reuseIdentifier = "reuseIdentifier"
+    let data = [CXCCurrencyModel.init(currency: .CNY),
+                CXCCurrencyModel.init(currency: .USD),
+                CXCCurrencyModel.init(currency: .JPY),
+                CXCCurrencyModel.init(currency: .AUD),
+                ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = NSLocalizedString("Choose Currency", comment: "")
+        let blurView = UIVisualEffectView.init(frame: self.tableView.bounds)
+        blurView.effect = UIBlurEffect.init(style: .dark)
+        self.tableView.backgroundView = blurView
+        
+        self.tableView.sectionIndexMinimumDisplayRowCount = 1
+        self.tableView.sectionIndexColor = .white
+        self.tableView.sectionIndexBackgroundColor = .gray
+        self.tableView.sectionIndexTrackingBackgroundColor = .black
 
+        
+        //
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -20,6 +38,13 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return ["C", "z", "xxx"]
+    }
+    
+//    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+//        <#code#>
+//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,24 +54,52 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return data.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        var cell = tableView.dequeueReusableCell(withIdentifier: CXCCurrencySelectionTableViewController.reuseIdentifier)
+        if cell == nil {
+            cell = UITableViewCell.init(style: .value1, reuseIdentifier: CXCCurrencySelectionTableViewController.reuseIdentifier)
+        }
+        cell?.backgroundColor = .clear
+        cell?.contentView.backgroundColor = .clear
+        let entity = data[indexPath.row]
+        cell!.textLabel?.text = entity.fullName + " - " + entity.currency
+        cell?.textLabel?.textColor = .white
+        cell?.detailTextLabel?.text = "???"
+        return cell!
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "nil"
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
+        let label = UILabel.init()
+        label.backgroundColor = .black
+        label.textColor = .white
+        label.text = "    Common Currency"
+        
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let parentVC = self.presentingViewController as! CXCMainViewController
+        // parentVC.tableViewVC.testCurrencis ...
+//        let cell = tableView.cellForRow(at: indexPath)
+        data[indexPath.row]
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

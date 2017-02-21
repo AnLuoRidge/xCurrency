@@ -19,6 +19,7 @@ let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height
 let xppi = screenWidth / 375
 let yppi = screenHeight / 667
+let keyboardHeight: CGFloat = CGFloat(280.0.yppi)
 
 //extension Float {
 //    static let widthUnit = Float(screenWidth / 375)

@@ -8,9 +8,9 @@
 
 import UIKit
 
-let cellReuseIdentifier = "reuseCell"
 
 class CXCMainTableViewController: UITableViewController {
+    static let cellReuseIdentifier = "reuseCell"
 
     var cells = [CXCMainTableViewCell]()
     var textFields = [UITextField]()
@@ -20,10 +20,12 @@ class CXCMainTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //self.tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
+self.tableView.isScrollEnabled = false
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        self.tableView.register(CXCMainTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        self.tableView.register(CXCMainTableViewCell.self, forCellReuseIdentifier: CXCMainTableViewController.cellReuseIdentifier)
+        
         //self.tableView.set
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -56,7 +58,7 @@ class CXCMainTableViewController: UITableViewController {
 //    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CXCMainTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CXCMainTableViewCell
+        let cell: CXCMainTableViewCell = tableView.dequeueReusableCell(withIdentifier: CXCMainTableViewController.cellReuseIdentifier, for: indexPath) as! CXCMainTableViewCell
         //cell.numTextField.delegate = self.presentingViewController as! UITextFieldDelegate?
         cell.numTextField.tag = textFieldIndex
         textFieldIndex += 1
@@ -72,6 +74,14 @@ class CXCMainTableViewController: UITableViewController {
         // Configure the cell...
     //cell.contentView.backgroundColor = .blue
 
+        // force enter editting mode
+        if indexPath.row == 0 {
+            cell.numTextField.becomeFirstResponder()
+            cell.numTextField.placeholder = "100.0"
+        } else {
+            cell.numTextField.placeholder = String(100 * cell.rate)
+        }
+
         return cell
     }
 
@@ -80,6 +90,19 @@ class CXCMainTableViewController: UITableViewController {
         return CXCMainTableViewController.rowHeight
     }
 
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let action = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("choose currency", comment: "")) { (action, indexPath) in
+            self.navigationController?.pushViewController(CXCCurrencySelectionTableViewController(), animated: true)
+        }
+        action.backgroundColor = .green
+        
+        let rateHistory = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("rateHistory", comment: "")) { (action, indexPath) in
+            print("cc")
+        }
+        rateHistory.backgroundColor = .blue
+        
+        return [action, rateHistory]
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

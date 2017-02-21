@@ -20,6 +20,7 @@ class CXCMainTableViewCell: UITableViewCell {
     lazy var numTextField: UITextField =  {
         //get {
         let tf = UITextField()
+        tf.textAlignment = .right
         return tf
     }()
     var fullNameLabel: UILabel {
@@ -57,7 +58,7 @@ class CXCMainTableViewCell: UITableViewCell {
         flagImageView.frame = CGRect.init(x: 20, y: 30, width: 30, height: 30)
         currencyLabel.frame = CGRect.init(x: 60, y: 30, width: 50, height: 15)
         fullNameLabel.frame = CGRect.init(x: 300, y: 10, width: 30, height: 20)
-        numTextField.frame = CGRect.init(x: 250, y: 15, width: 60, height: 15)
+        numTextField.frame = CGRect.init(x: 250, y: 30, width: 90, height: 30)
     }
     
     //    init(style: UITableViewCellStyle, reuseIdentifier: String?) {
