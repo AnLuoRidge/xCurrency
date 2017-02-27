@@ -16,6 +16,8 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
                 CXCCurrencyModel.init(currency: .AUD),
                 ]
     let preciousCurrencies = [CXCCurrencyModel(currencyEntity: .XAU), CXCCurrencyModel(currencyEntity: .XAG)]
+    let aCurrencies = [CXCCurrencyModel(currencyEntity: .AUD)]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,7 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return ["C", "z", "xxx"]
+        return ["#", "$", "A"]
     }
     
 //    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
@@ -55,12 +57,21 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return commonCurrencies.count
+        switch section {
+        case 0:
+            return commonCurrencies.count
+        case 1:
+            return preciousCurrencies.count
+        case 2:
+            return aCurrencies.count
+        default:
+            return commonCurrencies.count
+        }
     }
 
     
@@ -71,7 +82,17 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         }
         cell?.backgroundColor = .clear
         cell?.contentView.backgroundColor = .clear
-        let entity = commonCurrencies[indexPath.row]
+        let entity:CXCCurrencyModel
+        switch indexPath.section {
+        case 0:
+            entity = commonCurrencies[indexPath.row]
+        case 1:
+            entity = preciousCurrencies[indexPath.row]
+        case 2:
+            entity = aCurrencies[indexPath.row]
+        default:
+            entity = commonCurrencies[indexPath.row]
+        }
         cell!.textLabel?.text = entity.fullName + " - " + entity.currency
         cell?.textLabel?.textColor = .white
         cell?.detailTextLabel?.text = "???"

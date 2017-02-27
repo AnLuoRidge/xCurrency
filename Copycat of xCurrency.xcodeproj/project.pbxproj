@@ -21,6 +21,7 @@
 		D99A16CA1E4C913E001AD0F4 /* CXCKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */; };
 		D9F24CDF1E617A440096E420 /* CXCRatesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */; };
 		D9F24CE11E617D650096E420 /* CXCNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CE01E617D650096E420 /* CXCNetwork.swift */; };
+		D9F24CE31E640E2E0096E420 /* CXCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CE21E640E2E0096E420 /* CXCConstants.swift */; };
 		D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */; };
 		D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */; };
 		D9F6CE911E4D89CC002E7424 /* CXCCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */; };
@@ -66,6 +67,7 @@
 		D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCKeyboardView.swift; sourceTree = "<group>"; };
 		D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCRatesDetailView.swift; sourceTree = "<group>"; };
 		D9F24CE01E617D650096E420 /* CXCNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCNetwork.swift; sourceTree = "<group>"; };
+		D9F24CE21E640E2E0096E420 /* CXCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCConstants.swift; sourceTree = "<group>"; };
 		D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainTableViewController.swift; sourceTree = "<group>"; };
 		D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainTableViewCell.swift; sourceTree = "<group>"; };
 		D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCCurrencyModel.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */,
 				D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */,
 				D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */,
+				D9F24CE21E640E2E0096E420 /* CXCConstants.swift */,
 				D956B9A21E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift */,
 				D956B9A61E5C39FF0069AC67 /* CXCRatesDetailViewController.swift */,
 				D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */,
@@ -384,6 +387,7 @@
 				D956B9A51E5C38190069AC67 /* CXCHistoricalRateLineView.swift in Sources */,
 				D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */,
 				D9F24CE11E617D650096E420 /* CXCNetwork.swift in Sources */,
+				D9F24CE31E640E2E0096E420 /* CXCConstants.swift in Sources */,
 				D9F24CDF1E617A440096E420 /* CXCRatesDetailView.swift in Sources */,
 				D956B9A71E5C39FF0069AC67 /* CXCRatesDetailViewController.swift in Sources */,
 				D956B9A31E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift in Sources */,
