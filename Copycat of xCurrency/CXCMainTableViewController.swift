@@ -17,7 +17,7 @@ class CXCMainTableViewController: UITableViewController {
     var textFields = [UITextField]()
     var textFieldIndex = 1000
     // DEBUG
-    let testCurrencis = [Currency.CNY, Currency.USD, Currency.AUD, Currency.JPY]
+    let testCurrencis = [Currency.CNY, Currency.USD, Currency.EUR, Currency.HKD]
     
     override func viewDidLoad() {
         super.viewDidLoad()

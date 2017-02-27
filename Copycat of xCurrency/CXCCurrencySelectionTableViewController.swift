@@ -23,7 +23,7 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("Choose Currency", comment: "")
         let blurView = UIVisualEffectView.init(frame: self.tableView.bounds)
-        blurView.effect = UIBlurEffect.init(style: .dark)
+        blurView.effect = UIBlurEffect.init(style: .extraLight)//(style: .dark)
         self.tableView.backgroundView = blurView
         
         self.tableView.sectionIndexMinimumDisplayRowCount = 1
@@ -45,9 +45,10 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         return ["#", "$", "A"]
     }
     
-//    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-//        <#code#>
+//    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+//        return index
 //    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,7 +95,8 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
             entity = commonCurrencies[indexPath.row]
         }
         cell!.textLabel?.text = entity.fullName + " - " + entity.currency
-        cell?.textLabel?.textColor = .white
+//        cell?.textLabel?.textColor = .white// xC
+        
         cell?.detailTextLabel?.text = "???"
         return cell!
     }
@@ -104,11 +106,20 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
         let label = UILabel.init()
-        label.backgroundColor = .black
-        label.textColor = .white
-        label.text = "    Common Currency"
+
+        switch section {
+        case 0:
+            label.text = NSLocalizedString("    Common Currency", comment: "")
+        case 1:
+            label.text = NSLocalizedString("    Precious Currency", comment: "")
+        case 2:
+            label.text = NSLocalizedString("    A", comment: "")
+        default:
+break
+        }
+        label.backgroundColor = UIColor(hex: "#E6EAF2")
+        label.textColor = UIColor(hex: "#8891A7")
         
         return label
     }

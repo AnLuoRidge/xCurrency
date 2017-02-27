@@ -23,12 +23,14 @@ class CXCMainTableViewCell: UITableViewCell {
         tf.textAlignment = .right
         return tf
     }()
+    
     var fullNameLabel: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12.0)
         return label
 
     }
+    
     var rate: Float = 1.0
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -37,7 +39,6 @@ class CXCMainTableViewCell: UITableViewCell {
         self.contentView.addSubview(currencyLabel)
         self.contentView.addSubview(fullNameLabel)
         self.contentView.addSubview(numTextField)
-        
         
         setupConstraints()
     }
