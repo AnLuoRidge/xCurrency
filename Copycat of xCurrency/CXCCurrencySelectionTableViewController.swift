@@ -10,11 +10,12 @@ import UIKit
 
 class CXCCurrencySelectionTableViewController: UITableViewController {
     static let reuseIdentifier = "reuseIdentifier"
-    let data = [CXCCurrencyModel.init(currency: .CNY),
+    let commonCurrencies = [CXCCurrencyModel.init(currency: .CNY),
                 CXCCurrencyModel.init(currency: .USD),
                 CXCCurrencyModel.init(currency: .JPY),
                 CXCCurrencyModel.init(currency: .AUD),
                 ]
+    let preciousCurrencies = [CXCCurrencyModel(currencyEntity: .XAU), CXCCurrencyModel(currencyEntity: .XAG)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.count
+        return commonCurrencies.count
     }
 
     
@@ -70,7 +71,7 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         }
         cell?.backgroundColor = .clear
         cell?.contentView.backgroundColor = .clear
-        let entity = data[indexPath.row]
+        let entity = commonCurrencies[indexPath.row]
         cell!.textLabel?.text = entity.fullName + " - " + entity.currency
         cell?.textLabel?.textColor = .white
         cell?.detailTextLabel?.text = "???"
@@ -92,10 +93,17 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let parentVC = self.presentingViewController as! CXCMainViewController
+        var parentVC:CXCMainViewController
+        for vc in self.navigationController!.viewControllers {
+            if vc is CXCMainViewController {
+                parentVC = vc as! CXCMainViewController
+                parentVC.tableViewVC.selectedCell?.configureCell(entity:commonCurrencies[indexPath.row])
+            }
+        }
+        //let parentVC = self.navigationController?.presentingViewController//self.presentingViewController as! CXCMainViewController
         // parentVC.tableViewVC.testCurrencis ...
 //        let cell = tableView.cellForRow(at: indexPath)
-        data[indexPath.row]
+        
         self.navigationController?.popViewController(animated: true)
         
     }

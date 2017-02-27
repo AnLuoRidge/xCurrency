@@ -77,35 +77,7 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         self.view.addSubview(tableViewVC.view)
         //        self.observeValue(forKeyPath: "tableViewVC.tableView.indexPathForSelectedRow", of: <#T##Any?#>, change: <#T##[NSKeyValueChangeKey : Any]?#>, context: <#T##UnsafeMutableRawPointer?#>)
         setupConstraints()
-        
-        let session = URLSession.init(configuration: URLSessionConfiguration.default)
-        let task = session.dataTask(with: URL.init(string: "https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json")!) { (data, response, error) in
-            
-            do {
-                if data != nil {
-                    //if JSONSerialization.isValidJSONObject(data) {
-                    let dict1 = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
-                    
-                    let list = dict1["list"]! as! [String:Any];
-                    //let json1 = json["resources"] as! [[String:Any]];
-                    for dict in list["resources"] as! [[String:Any]] {
-                        let resource = dict["resource"]! as! [String:Any];
-                        let fields = resource["fields"] as! [String:String];
-                        if let price = fields["price"] {
-                            if let name = fields["name"] {
-                                currentCurrencyDict.updateValue(Float(price)!, forKey: name)
-                            }
-                        }
-                        
-                        
-                    }
-                    //}
-                }
-            } catch {
-                
-            }
-            
-        }
+        CXCNetwork.getAllCurrentCurrenciesData()
         // TODO: open
         //task.resume()
         

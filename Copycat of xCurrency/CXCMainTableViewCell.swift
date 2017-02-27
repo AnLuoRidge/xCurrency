@@ -47,7 +47,7 @@ class CXCMainTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func configureCell(entity: CXCCurrencyModel) {
+    func configureCell(entity: CXCCurrencyModel) {
         flagImageView.image = entity.flagImage
         //        currencyLabel = UILabel()
         currencyLabel.text = entity.currency

@@ -13,6 +13,7 @@ class CXCMainTableViewController: UITableViewController {
     static let cellReuseIdentifier = "reuseCell"
 
     var cells = [CXCMainTableViewCell]()
+    var selectedCell: CXCMainTableViewCell?
     var textFields = [UITextField]()
     var textFieldIndex = 1000
     // DEBUG
@@ -22,6 +23,7 @@ class CXCMainTableViewController: UITableViewController {
         super.viewDidLoad()
         //self.tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
 self.tableView.isScrollEnabled = false
+        self.tableView.remembersLastFocusedIndexPath = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         self.tableView.register(CXCMainTableViewCell.self, forCellReuseIdentifier: CXCMainTableViewController.cellReuseIdentifier)
@@ -91,13 +93,22 @@ self.tableView.isScrollEnabled = false
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        selectedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
         let action = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("choose currency", comment: "")) { (action, indexPath) in
             self.navigationController?.pushViewController(CXCCurrencySelectionTableViewController(), animated: true)
         }
         action.backgroundColor = .green
         
         let rateHistory = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("rateHistory", comment: "")) { (action, indexPath) in
-            print("cc")
+            
+            var selectedCell:CXCMainTableViewCell
+            if indexPath.row != 0 {
+                selectedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
+            } else {
+                selectedCell = self.cells[1]
+            }
+            
+self.navigationController?.pushViewController(CXCRatesDetailViewController.init(currencyOne: (self.cells.first?.currencyLabel.text)!, currencyTwo: selectedCell.currencyLabel.text!), animated: true)
         }
         rateHistory.backgroundColor = .blue
         

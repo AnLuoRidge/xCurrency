@@ -10,8 +10,8 @@
 		29310B29F7E0072304B90D35 /* Pods_Copycat_of_xCurrency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6AFA7B6EABB7B5959C74DC4 /* Pods_Copycat_of_xCurrency.framework */; };
 		D956B9A01E5947600069AC67 /* CXCMainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B99F1E59475E0069AC67 /* CXCMainNavigationController.swift */; };
 		D956B9A31E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A21E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift */; };
-		D956B9A51E5C38190069AC67 /* CXCHistoricalRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A41E5C38180069AC67 /* CXCHistoricalRateView.swift */; };
-		D956B9A71E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A61E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift */; };
+		D956B9A51E5C38190069AC67 /* CXCHistoricalRateLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A41E5C38180069AC67 /* CXCHistoricalRateLineView.swift */; };
+		D956B9A71E5C39FF0069AC67 /* CXCRatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956B9A61E5C39FF0069AC67 /* CXCRatesDetailViewController.swift */; };
 		D99A169C1E4C8E99001AD0F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */; };
 		D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */; };
 		D99A16A31E4C8E9A001AD0F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */; };
@@ -19,6 +19,8 @@
 		D99A16B11E4C8E9C001AD0F4 /* Copycat_of_xCurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16B01E4C8E9C001AD0F4 /* Copycat_of_xCurrencyTests.swift */; };
 		D99A16BC1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16BB1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift */; };
 		D99A16CA1E4C913E001AD0F4 /* CXCKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */; };
+		D9F24CDF1E617A440096E420 /* CXCRatesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */; };
+		D9F24CE11E617D650096E420 /* CXCNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CE01E617D650096E420 /* CXCNetwork.swift */; };
 		D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */; };
 		D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */; };
 		D9F6CE911E4D89CC002E7424 /* CXCCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */; };
@@ -47,8 +49,8 @@
 		D6AFA7B6EABB7B5959C74DC4 /* Pods_Copycat_of_xCurrency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Copycat_of_xCurrency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D956B99F1E59475E0069AC67 /* CXCMainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainNavigationController.swift; sourceTree = "<group>"; };
 		D956B9A21E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCCurrencySelectionTableViewController.swift; sourceTree = "<group>"; };
-		D956B9A41E5C38180069AC67 /* CXCHistoricalRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCHistoricalRateView.swift; sourceTree = "<group>"; };
-		D956B9A61E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCHistoricalRateViewController.swift; sourceTree = "<group>"; };
+		D956B9A41E5C38180069AC67 /* CXCHistoricalRateLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCHistoricalRateLineView.swift; sourceTree = "<group>"; };
+		D956B9A61E5C39FF0069AC67 /* CXCRatesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCRatesDetailViewController.swift; sourceTree = "<group>"; };
 		D99A16981E4C8E99001AD0F4 /* Copycat of xCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Copycat of xCurrency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CXCMainViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,8 @@
 		D99A16BB1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copycat_of_xCurrencyUITests.swift; sourceTree = "<group>"; };
 		D99A16BD1E4C8E9C001AD0F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCKeyboardView.swift; sourceTree = "<group>"; };
+		D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCRatesDetailView.swift; sourceTree = "<group>"; };
+		D9F24CE01E617D650096E420 /* CXCNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCNetwork.swift; sourceTree = "<group>"; };
 		D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainTableViewController.swift; sourceTree = "<group>"; };
 		D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainTableViewCell.swift; sourceTree = "<group>"; };
 		D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCCurrencyModel.swift; sourceTree = "<group>"; };
@@ -143,8 +147,10 @@
 				D9F6CE8E1E4D64CE002E7424 /* CXCMainTableViewCell.swift */,
 				D9F6CE901E4D89CC002E7424 /* CXCCurrencyModel.swift */,
 				D956B9A21E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift */,
-				D956B9A61E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift */,
-				D956B9A41E5C38180069AC67 /* CXCHistoricalRateView.swift */,
+				D956B9A61E5C39FF0069AC67 /* CXCRatesDetailViewController.swift */,
+				D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */,
+				D956B9A41E5C38180069AC67 /* CXCHistoricalRateLineView.swift */,
+				D9F24CE01E617D650096E420 /* CXCNetwork.swift */,
 				D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */,
 				D99A16A41E4C8E9A001AD0F4 /* LaunchScreen.storyboard */,
 				D99A16A71E4C8E9A001AD0F4 /* Info.plist */,
@@ -183,6 +189,7 @@
 				D99A16961E4C8E96001AD0F4 /* Resources */,
 				390C1D9A725E199C162D421F /* [CP] Embed Pods Frameworks */,
 				50C83910963FEB3C3204127B /* [CP] Copy Pods Resources */,
+				D9F24CDD1E5EDE4C0096E420 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -348,6 +355,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		D9F24CDD1E5EDE4C0096E420 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -360,9 +381,11 @@
 				D99A169E1E4C8E99001AD0F4 /* CXCMainViewController.swift in Sources */,
 				D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */,
 				D9F6CE911E4D89CC002E7424 /* CXCCurrencyModel.swift in Sources */,
-				D956B9A51E5C38190069AC67 /* CXCHistoricalRateView.swift in Sources */,
+				D956B9A51E5C38190069AC67 /* CXCHistoricalRateLineView.swift in Sources */,
 				D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */,
-				D956B9A71E5C39FF0069AC67 /* CXCHistoricalRateViewController.swift in Sources */,
+				D9F24CE11E617D650096E420 /* CXCNetwork.swift in Sources */,
+				D9F24CDF1E617A440096E420 /* CXCRatesDetailView.swift in Sources */,
+				D956B9A71E5C39FF0069AC67 /* CXCRatesDetailViewController.swift in Sources */,
 				D956B9A31E59A21D0069AC67 /* CXCCurrencySelectionTableViewController.swift in Sources */,
 				D99A169C1E4C8E99001AD0F4 /* AppDelegate.swift in Sources */,
 			);
