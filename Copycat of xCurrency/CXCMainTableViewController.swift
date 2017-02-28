@@ -21,6 +21,7 @@ class CXCMainTableViewController: UITableViewController {
         super.viewDidLoad()
         //self.tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
 self.tableView.isScrollEnabled = false
+        
         self.tableView.remembersLastFocusedIndexPath = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,6 +36,7 @@ self.tableView.isScrollEnabled = false
     override func viewWillAppear(_ animated: Bool) {
 //        fourVisibleCurrencis.removeAll()
         for cell in cells.enumerated() {
+            cell.element.backgroundScrollView.setContentOffset(CGPoint(x: screenWidth, y:0), animated: false)
             // if switched
             if cell.element.currencyLabel.text != fourVisibleCurrencis[cell.offset].rawValue {
                 fourVisibleCurrencis[cell.offset] = Currency(rawValue: cell.element.currencyLabel.text!)!
@@ -73,7 +75,7 @@ self.tableView.isScrollEnabled = false
         textFieldIndex += 1
         cells.append(cell)
         textFields.append(cell.numTextField)
-
+        cell.delegate = self
         // DEBUG
         let entity = CXCCurrencyModel(currency: fourVisibleCurrencis[indexPath.row])
         if let rate = currentCurrencyDict[entity.currency] {
@@ -81,6 +83,7 @@ self.tableView.isScrollEnabled = false
         } else {
         cell.rate = 1.0
         }
+        
         // DEBUG
         cell.configureCell(entity: entity)
 //self.presentingViewController
@@ -98,84 +101,41 @@ self.tableView.isScrollEnabled = false
         return cell
     }
 
-    static let rowHeight = (screenHeight - 58.yppi - 280.yppi) / 4
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CXCMainTableViewController.rowHeight
+        return mainCellRowHeight
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        selectedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
-        let backgroundColor = UIColor(hex: "#8891A7")
-        
-        // switch currency action
-        let switchCurrencyAction = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("Switch Currency", comment: "")) { (action, indexPath) in
-            self.navigationController?.pushViewController(CXCCurrencySelectionTableViewController(fromCell:self.selectedCell!), animated: true)
-        }
-        switchCurrencyAction.backgroundColor = backgroundColor
-        
-        // rates details action
-        let ratesDetailsAction = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("Rates Details", comment: "")) { (action, indexPath) in
-            
-            var focusedCell:CXCMainTableViewCell
-            if indexPath.row != 0 {
-                focusedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
-            } else {
-                focusedCell = self.cells[1]
-            }
-            
-self.navigationController?.pushViewController(CXCRatesDetailViewController.init(currencyOne: (self.cells.first?.currencyLabel.text)!, currencyTwo: focusedCell.currencyLabel.text!), animated: true)
-        }
-        ratesDetailsAction.backgroundColor = .gray
-        
-        return [switchCurrencyAction, ratesDetailsAction]
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         textFields[indexPath.row].becomeFirstResponder()
+//        tableView.deselectRow(at: indexPath, animated: true)
     }
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        // block swipe delete
+        return false
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+}
+
+extension CXCMainTableViewController: MainTableViewCellDelegate {
+    
+    func rightSwipeAction(cell: CXCMainTableViewCell) {
+        self.navigationController?.pushViewController(CXCCurrencySelectionTableViewController(fromCell:cell), animated: true)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func leftSwipeAction(currency: String) {
+        //        var focusedCell:CXCMainTableViewCell
+        let correspondingCurrency:String!
+        if currency != self.cells.first?.currencyLabel.text! {
+            correspondingCurrency = currency
+            //            focusedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
+        } else {
+            correspondingCurrency = "USD"
+        }
+        
+        self.navigationController?.pushViewController(CXCRatesDetailViewController.init(currencyOne: (self.cells.first?.currencyLabel.text)!, currencyTwo: correspondingCurrency), animated: true)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

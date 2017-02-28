@@ -267,6 +267,7 @@ let yppi = screenHeight / 667.0
 let keyboardHeight: CGFloat = CGFloat(280.0.yppi)
 let dateButtonSelectedColor = UIColor(hex: "#29B774")
 let dateButtonNormalColor = UIColor(hex: "#99A4BF")
+let mainCellRowHeight = (screenHeight - 58.yppi - 280.yppi) / 4
 
 class CXCConstants: NSObject {
     

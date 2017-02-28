@@ -18,6 +18,8 @@ class CXCNetworking: NSObject {
             
             do {
                 if data != nil {
+                    // TODO: save to ...and open at start while fetching
+//                    FileManager.
                     //if JSONSerialization.isValidJSONObject(data) {
                     let dict1 = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
                     

@@ -369,10 +369,10 @@ class CXCRatesDetailView: UIView {
             make.bottom.equalTo(bottomBackgroundView.snp.top)
         }
         
-        lowestLabel.text = NSLocalizedString("Lowest", comment: "") + String(Float(points.min()!))
-        highestLabel.text = NSLocalizedString("Highest", comment: "") + String(Float(points.max()!))
+        lowestLabel.text = NSLocalizedString("Lowest:", comment: "") + String(Float(points.min()!))
+        highestLabel.text = NSLocalizedString("Highest:", comment: "") + String(Float(points.max()!))
         let current = 1.0 / currentCurrencyDict[self.currencyOne.currency]! * currentCurrencyDict[self.currencyTwo.currency]!
-        currentLabel.text = NSLocalizedString("Current", comment: "") + String(current)
+        currentLabel.text = NSLocalizedString("Current:", comment: "") + String(current)
     }
     
     // Only override draw() if you perform custom drawing.
