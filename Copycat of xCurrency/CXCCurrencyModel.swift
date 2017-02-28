@@ -14,9 +14,11 @@ class CXCCurrencyModel: NSObject {
     let fullName: String
     let currency: String
     let symbol: String
+    let type:Currency
     
     init(currency: Currency) {
         self.currency = currency.rawValue
+        type = currency
         fullName = fullNameDict[self.currency]!
         flagImage = UIImage.init(named: self.currency)!
         symbol = symbolDict[self.currency]!

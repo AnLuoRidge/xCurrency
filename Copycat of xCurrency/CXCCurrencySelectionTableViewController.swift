@@ -10,68 +10,29 @@ import UIKit
 
 class CXCCurrencySelectionTableViewController: UITableViewController {
     static let reuseIdentifier = "reuseIdentifier"
-    static var commonCurrencies = [CXCCurrencyModel.init(currency: .CNY),
-                CXCCurrencyModel.init(currency: .USD),
-                CXCCurrencyModel.init(currency: .JPY),
-                CXCCurrencyModel.init(currency: .AUD),
-                ]
-    static let preciousCurrencies = [CXCCurrencyModel(currencyEntity: .XAU), CXCCurrencyModel(currencyEntity: .XAG)]
-    static let aCurrencies = [CXCCurrencyModel(currencyEntity: .AUD)]
-    static let bCurrencies = [CXCCurrencyModel(currencyEntity: .BTC)]
-    static let cCurrencies = [CXCCurrencyModel(currencyEntity: .CNY)]
-    static let dCurrencies = [CXCCurrencyModel(currencyEntity: .DKK)]
-    static let eCurrencies = [CXCCurrencyModel(currencyEntity: .EUR)]
-    static let fCurrencies = [CXCCurrencyModel(currencyEntity: .FJD)]
-    static let gCurrencies = [CXCCurrencyModel(currencyEntity: .XAU)]
-    static let hCurrencies = [CXCCurrencyModel(currencyEntity: .HKD)]
-    static let iCurrencies = [CXCCurrencyModel(currencyEntity: .INR)]
-    static let jCurrencies = [CXCCurrencyModel(currencyEntity: .JPY)]
-    static let kCurrencies = [CXCCurrencyModel(currencyEntity: .KES)]
-    static let lCurrencies = [CXCCurrencyModel(currencyEntity: .LYD)]
-    static let mCurrencies = [CXCCurrencyModel(currencyEntity: .MOP), CXCCurrencyModel(currencyEntity: .MWK)]
-    static let nCurrencies = [CXCCurrencyModel(currencyEntity: .KPW)]
-    static let oCurrencies = [CXCCurrencyModel(currencyEntity: .OMR)]
-    static let pCurrencies = [CXCCurrencyModel(currencyEntity: .PAB)]
-    static let qCurrencies = [CXCCurrencyModel(currencyEntity: .QAR)]
-    static let rCurrencies = [CXCCurrencyModel(currencyEntity: .CNH)]
-    static let sCurrencies = [CXCCurrencyModel(currencyEntity: .XAG)]
-    static let tCurrencies = [CXCCurrencyModel(currencyEntity: .TWD)]
-    static let uCurrencies = [CXCCurrencyModel(currencyEntity: .USD)]
-    static let vCurrencies = [CXCCurrencyModel(currencyEntity: .VND)]
-    static let yCurrencies = [CXCCurrencyModel(currencyEntity: .YER)]
-    static let zCurrencies = [CXCCurrencyModel(currencyEntity: .ZMW)]
-    static let currencies = [commonCurrencies,
-                             preciousCurrencies,
-                             aCurrencies,
-                             bCurrencies,
-                             cCurrencies,
-                             dCurrencies,
-                             eCurrencies,
-                             fCurrencies,
-                             gCurrencies,
-                             hCurrencies,
-                             iCurrencies,
-                             jCurrencies,
-                             kCurrencies,
-                             lCurrencies,
-                             mCurrencies,
-                             nCurrencies,
-                             oCurrencies,
-                             pCurrencies,
-                             qCurrencies,
-                             rCurrencies,
-                             sCurrencies,
-                             tCurrencies,
-                             uCurrencies,
-                             vCurrencies,
-                             yCurrencies,
-                             zCurrencies]
+    unowned let lastCell:CXCMainTableViewCell
+//    func getLastCell() -> CXCMainTableViewCell {
+//        var parentVC:CXCMainViewController?
+//        for vc in self.navigationController!.viewControllers {
+//            if vc is CXCMainViewController {
+//                parentVC = vc as? CXCMainViewController
+//            }
+//        }
+//        return parentVC!.tableViewVC.selectedCell!
+//    }
 
-
+    init(fromCell cell:CXCMainTableViewCell) {
+        lastCell = cell
+        super.init(nibName: nil, bundle: nil)
+    }
     
-
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = NSLocalizedString("Switch Currency", comment: "")
         let blurView = UIVisualEffectView.init(frame: self.tableView.bounds)
         blurView.effect = UIBlurEffect.init(style: .extraLight)//(style: .dark)
@@ -81,15 +42,6 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         self.tableView.sectionIndexColor = .white
         self.tableView.sectionIndexBackgroundColor = .gray
         self.tableView.sectionIndexTrackingBackgroundColor = .black
-
-        
-        //
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -109,12 +61,12 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return CXCCurrencySelectionTableViewController.currencies.count
+        return allCurrencies.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return CXCCurrencySelectionTableViewController.currencies[section].count
+        return allCurrencies[section].count
     }
 
     
@@ -125,11 +77,18 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         }
         cell?.backgroundColor = .clear
         cell?.contentView.backgroundColor = .clear
-        let entity = CXCCurrencySelectionTableViewController.currencies[indexPath.section][indexPath.row]
+        let entity = allCurrencies[indexPath.section][indexPath.row]
         cell!.textLabel?.text = entity.fullName + " - " + entity.currency
 //        cell?.textLabel?.textColor = .white// xC
+        if fourVisibleCurrencis.contains(entity.type) {
+            cell?.detailTextLabel?.text = NSLocalizedString("Selected", comment: "")
+            if entity.currency == lastCell.currencyLabel.text {
+                cell?.detailTextLabel?.text = NSLocalizedString("Current Selected", comment: "")
+            }
+        } else {
+            cell?.detailTextLabel?.text = nil
+        }
         
-        cell?.detailTextLabel?.text = "???"
         return cell!
     }
     
@@ -203,13 +162,8 @@ break
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var parentVC:CXCMainViewController
-        for vc in self.navigationController!.viewControllers {
-            if vc is CXCMainViewController {
-                parentVC = vc as! CXCMainViewController
-                parentVC.tableViewVC.selectedCell?.configureCell(entity:CXCCurrencySelectionTableViewController.currencies[indexPath.section][indexPath.row])
-            }
-        }
+        let entity = allCurrencies[indexPath.section][indexPath.row]
+        lastCell.configureCell(entity: entity)
         //let parentVC = self.navigationController?.presentingViewController//self.presentingViewController as! CXCMainViewController
         // parentVC.tableViewVC.testCurrencis ...
 //        let cell = tableView.cellForRow(at: indexPath)

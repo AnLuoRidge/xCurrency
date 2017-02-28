@@ -39,14 +39,6 @@ enum Currency: String  {
     case ZMW = "ZMW"
 }
 
-let screenWidth = UIScreen.main.bounds.width
-let screenHeight = UIScreen.main.bounds.height
-let xppi = screenWidth / 375.0
-let yppi = screenHeight / 667.0
-let keyboardHeight: CGFloat = CGFloat(280.0.yppi)
-let dateButtonSelectedColor = UIColor(hex: "#29B774")
-let dateButtonNormalColor = UIColor(hex: "#99A4BF")
-
 /*
  # Currency display name translations
  AED=United Arab Emirates Dirham
@@ -209,7 +201,72 @@ var currentCurrencyDict:[String:Float] = ["CNY/HKD":1.4,
                                           "USD/HKD":7.5,
                                           "USD/JPY":113.393]
 
+var commonCurrencies = [CXCCurrencyModel.init(currency: .CNY),
+                               CXCCurrencyModel.init(currency: .USD),
+                               CXCCurrencyModel.init(currency: .JPY),
+                               CXCCurrencyModel.init(currency: .AUD),
+]
+let preciousCurrencies = [CXCCurrencyModel(currencyEntity: .XAU), CXCCurrencyModel(currencyEntity: .XAG)]
+let aCurrencies = [CXCCurrencyModel(currencyEntity: .AUD)]
+let bCurrencies = [CXCCurrencyModel(currencyEntity: .BTC)]
+let cCurrencies = [CXCCurrencyModel(currencyEntity: .CNY)]
+let dCurrencies = [CXCCurrencyModel(currencyEntity: .DKK)]
+let eCurrencies = [CXCCurrencyModel(currencyEntity: .EUR)]
+let fCurrencies = [CXCCurrencyModel(currencyEntity: .FJD)]
+let gCurrencies = [CXCCurrencyModel(currencyEntity: .XAU)]
+let hCurrencies = [CXCCurrencyModel(currencyEntity: .HKD)]
+let iCurrencies = [CXCCurrencyModel(currencyEntity: .INR)]
+let jCurrencies = [CXCCurrencyModel(currencyEntity: .JPY)]
+let kCurrencies = [CXCCurrencyModel(currencyEntity: .KES)]
+let lCurrencies = [CXCCurrencyModel(currencyEntity: .LYD)]
+let mCurrencies = [CXCCurrencyModel(currencyEntity: .MOP), CXCCurrencyModel(currencyEntity: .MWK)]
+let nCurrencies = [CXCCurrencyModel(currencyEntity: .KPW)]
+let oCurrencies = [CXCCurrencyModel(currencyEntity: .OMR)]
+let pCurrencies = [CXCCurrencyModel(currencyEntity: .PAB)]
+let qCurrencies = [CXCCurrencyModel(currencyEntity: .QAR)]
+let rCurrencies = [CXCCurrencyModel(currencyEntity: .CNH)]
+let sCurrencies = [CXCCurrencyModel(currencyEntity: .XAG)]
+let tCurrencies = [CXCCurrencyModel(currencyEntity: .TWD)]
+let uCurrencies = [CXCCurrencyModel(currencyEntity: .USD)]
+let vCurrencies = [CXCCurrencyModel(currencyEntity: .VND)]
+let yCurrencies = [CXCCurrencyModel(currencyEntity: .YER)]
+let zCurrencies = [CXCCurrencyModel(currencyEntity: .ZMW)]
+let allCurrencies = [commonCurrencies,
+                         preciousCurrencies,
+                         aCurrencies,
+                         bCurrencies,
+                         cCurrencies,
+                         dCurrencies,
+                         eCurrencies,
+                         fCurrencies,
+                         gCurrencies,
+                         hCurrencies,
+                         iCurrencies,
+                         jCurrencies,
+                         kCurrencies,
+                         lCurrencies,
+                         mCurrencies,
+                         nCurrencies,
+                         oCurrencies,
+                         pCurrencies,
+                         qCurrencies,
+                         rCurrencies,
+                         sCurrencies,
+                         tCurrencies,
+                         uCurrencies,
+                         vCurrencies,
+                         yCurrencies,
+                         zCurrencies]
 
+
+var fourVisibleCurrencis = [Currency.CNY, Currency.USD, Currency.EUR, Currency.HKD]
+let screenWidth = UIScreen.main.bounds.width
+let screenHeight = UIScreen.main.bounds.height
+let xppi = screenWidth / 375.0
+let yppi = screenHeight / 667.0
+let keyboardHeight: CGFloat = CGFloat(280.0.yppi)
+let dateButtonSelectedColor = UIColor(hex: "#29B774")
+let dateButtonNormalColor = UIColor(hex: "#99A4BF")
 
 class CXCConstants: NSObject {
     

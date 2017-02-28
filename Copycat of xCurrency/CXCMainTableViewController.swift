@@ -16,8 +16,6 @@ class CXCMainTableViewController: UITableViewController {
     var selectedCell: CXCMainTableViewCell?
     var textFields = [UITextField]()
     var textFieldIndex = 1000
-    // DEBUG
-    var visibleCurrencis = [Currency.CNY, Currency.USD, Currency.EUR, Currency.HKD]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +32,15 @@ self.tableView.isScrollEnabled = false
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+//        fourVisibleCurrencis.removeAll()
+        for cell in cells.enumerated() {
+            // if switched
+            if cell.element.currencyLabel.text != fourVisibleCurrencis[cell.offset].rawValue {
+                fourVisibleCurrencis[cell.offset] = Currency(rawValue: cell.element.currencyLabel.text!)!
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,7 +75,7 @@ self.tableView.isScrollEnabled = false
         textFields.append(cell.numTextField)
 
         // DEBUG
-        let entity = CXCCurrencyModel(currency: visibleCurrencis[indexPath.row])
+        let entity = CXCCurrencyModel(currency: fourVisibleCurrencis[indexPath.row])
         if let rate = currentCurrencyDict[entity.currency] {
             cell.rate = rate
         } else {
@@ -102,7 +109,7 @@ self.tableView.isScrollEnabled = false
         
         // switch currency action
         let switchCurrencyAction = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("Switch Currency", comment: "")) { (action, indexPath) in
-            self.navigationController?.pushViewController(CXCCurrencySelectionTableViewController(), animated: true)
+            self.navigationController?.pushViewController(CXCCurrencySelectionTableViewController(fromCell:self.selectedCell!), animated: true)
         }
         switchCurrencyAction.backgroundColor = backgroundColor
         
