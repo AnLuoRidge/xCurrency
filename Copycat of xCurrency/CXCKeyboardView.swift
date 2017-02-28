@@ -22,9 +22,9 @@ class CXCKeyboardView: UIView {
         btn.setTitle("1", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
         btn.setBackgroundImage(UIImage.init(named: "number_key_1"), for: .normal)
-//        let view = UIView.init(frame: CGRect.init(x: 30, y: 30, width: 15, height: 24))
-//        view.backgroundColor = .red
-//        btn.addSubview(view)
+        //        let view = UIView.init(frame: CGRect.init(x: 30, y: 30, width: 15, height: 24))
+        //        view.backgroundColor = .red
+        //        btn.addSubview(view)
         return btn
     }()
     
@@ -51,7 +51,7 @@ class CXCKeyboardView: UIView {
         btn.setBackgroundImage(UIImage.init(named: "number_key_4"), for: .normal)
         return btn
     }()
-
+    
     lazy var fiveBtn: UIButton = {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("5", for: .normal)
@@ -161,7 +161,7 @@ class CXCKeyboardView: UIView {
     func setupSubviews() {
         btns = [zeroBtn, oneBtn, twoBtn, threeBtn, fourBtn, fiveBtn, sixBtn, sevenBtn, eightBtn, nineBtn, dotBtn, delBtn]
         for btn in btns {
-        btn.addTarget(delegate, action: #selector(delegate?.proceedTextFromKeyboard(sender:)), for: .touchUpInside)
+            btn.addTarget(delegate, action: #selector(delegate?.proceedTextFromKeyboard(sender:)), for: .touchUpInside)
             addSubview(btn)
         }
         addSubview(plusBtn)
@@ -279,19 +279,19 @@ class CXCKeyboardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func <#name#>(<#parameters#>) -> <#return type#> {
-//        let btn = UIButton()
-//        btn.addTarget(delegate, action: proceed, for: UIControlEvents.touchUpInside)
-//    }
+    //    func <#name#>(<#parameters#>) -> <#return type#> {
+    //        let btn = UIButton()
+    //        btn.addTarget(delegate, action: proceed, for: UIControlEvents.touchUpInside)
+    //    }
     //fomulaTextField.text = "d"
     
-
+    
     /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
+    
 }

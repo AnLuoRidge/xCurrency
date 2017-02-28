@@ -9,8 +9,8 @@
 import UIKit
 
 class CXCHistoricalRateLineView: UIView {
-
-var rates = [CGFloat]()
+    
+    var rates = [CGFloat]()
     
     init(rates:[CGFloat]) {
         super.init(frame: CGRect.zero)
@@ -23,7 +23,7 @@ var rates = [CGFloat]()
     }
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
-
+        
         if rates.count > 0 {
             
             // reduce to 20
@@ -39,7 +39,7 @@ var rates = [CGFloat]()
                     group.removeAll()
                 }
             }
-              
+            
             var currencis:[CGFloat] = avgs//[300.0, 320.0, 230.0, 350.0, 310, 420, 410, 200, 210, 190, 170, 200, 230, 211, 300]
             
             // 归一化
@@ -56,12 +56,12 @@ var rates = [CGFloat]()
             for currency in currencis.enumerated() {
                 points.append(CGPoint(x: offset * CGFloat(currency.offset), y: self.bounds.height * currency.element))
             }
-
+            
             // draw the line
             let linePath = UIBezierPath()
-//            linePath.lineWidth = 2.0
-//            linePath.lineCapStyle = .square
-//            linePath.lineCapStyle = .round
+            //            linePath.lineWidth = 2.0
+            //            linePath.lineCapStyle = .square
+            //            linePath.lineCapStyle = .round
             linePath.move(to: points.first!)
             
             for point in points {
@@ -89,12 +89,14 @@ var rates = [CGFloat]()
             // set gradient background
             let gradientBackgroundLayer = CAGradientLayer()
             gradientBackgroundLayer.frame = self.bounds
-//            let xBlue = UIColor.init(red: 42.0/255.0, green: 95.0/255.0, blue: 211.0/255.0, alpha: 1.0).cgColor
-//            let xGreen = UIColor.init(red: 14.0/255.0, green: 240.0/255.0, blue: 163.0/255.0, alpha: 1.0).cgColor
+                        let xBlue = UIColor.init(red: 42.0/255.0, green: 95.0/255.0, blue: 211.0/255.0, alpha: 1.0).cgColor
+                        let xGreen = UIColor.init(red: 14.0/255.0, green: 240.0/255.0, blue: 163.0/255.0, alpha: 1.0).cgColor
+            gradientBackgroundLayer.colors = [xBlue, xGreen]
+
             // #56EFBC #2BD987
-            let lightGreen = UIColor(hex: "#56EFBC").cgColor
-            let darkGreen = UIColor(hex: "#2BD987").cgColor
-            gradientBackgroundLayer.colors = [lightGreen, darkGreen]
+//            let lightGreen = UIColor(hex: "#56EFBC").cgColor
+//            let darkGreen = UIColor(hex: "#2BD987").cgColor
+//            gradientBackgroundLayer.colors = [lightGreen, darkGreen]
             gradientBackgroundLayer.startPoint = CGPoint.init(x: 0, y: 0.5)
             gradientBackgroundLayer.endPoint = CGPoint.init(x: 1.0, y: 0.5)
             gradientBackgroundLayer.mask = lineMaskLayer
@@ -103,5 +105,5 @@ var rates = [CGFloat]()
         }
     }
     
-
+    
 }

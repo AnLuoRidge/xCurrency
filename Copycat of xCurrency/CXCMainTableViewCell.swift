@@ -34,13 +34,13 @@ class CXCMainTableViewCell: UITableViewCell {
     
     lazy var ratesDetailsImageView:UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "汇率详情"))
-//        view.backgroundColor = .clear
+        //        view.backgroundColor = .clear
         return view
     }()
     
     lazy var ratesDetailsLabel:UILabel = {
         let lbl = UILabel()
-//        lbl.backgroundColor = .clear
+        //        lbl.backgroundColor = .clear
         lbl.text = NSLocalizedString("Rates Details", comment: "")
         lbl.font = UIFont.systemFont(ofSize: 16.0)
         lbl.textColor = .white
@@ -49,13 +49,13 @@ class CXCMainTableViewCell: UITableViewCell {
     
     lazy var switchCurrencyImageView:UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "汇率转换"))
-//        view.backgroundColor = .clear
+        //        view.backgroundColor = .clear
         return view
     }()
     
     lazy var switchCurrencyLabel:UILabel = {
         let lbl = UILabel()
-//        lbl.backgroundColor = .clear
+        //        lbl.backgroundColor = .clear
         lbl.text = NSLocalizedString("Switch Currency", comment: "")
         lbl.font = UIFont.systemFont(ofSize: 16.0)
         lbl.textColor = .white
@@ -64,7 +64,7 @@ class CXCMainTableViewCell: UITableViewCell {
     
     lazy var middleView:UIView = {
         let view = UIView()
-//        view.backgroundColor = .clear
+        //        view.backgroundColor = .clear
         return view
     }()
     

@@ -12,6 +12,7 @@ class CXCRatesDetailView: UIView {
     
     var dateButtons = [UIButton]()
     var rateLineView: CXCHistoricalRateLineView?
+    var selectTime = "7d"
     
     // TODO: move to VC
     var ratesOne:[CGFloat]?
@@ -119,7 +120,7 @@ class CXCRatesDetailView: UIView {
     lazy var bottomLabel: UILabel = {
         let lbl = UILabel(frame: CGRect(x: 18.xppi, y: 580.yppi, width: screenWidth, height: 19.yppi))
         let space = "                 "
-        lbl.text = "08" + space + "12" + space + "20" + space + "26" + space + "30"
+        lbl.text = "12" + space + "16" + space + "20" + space + "24" + space + "28"
         lbl.textColor = dateButtonNormalColor
         lbl.font = UIFont.systemFont(ofSize: 16.0)
         return lbl
@@ -139,8 +140,40 @@ class CXCRatesDetailView: UIView {
         // GET -> display
         // TODO: put into closure / protocol, btn execute
         // TODO: modify time
+        selectTime = time
         ratesOne = nil
         ratesTwo = nil
+        
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.frame = CGRect(origin: CGPoint(x:screenWidth/2 - 25.xppi, y: 390.yppi), size: CGSize(width: 25.xppi, height: 25.yppi))
+        spinner.startAnimating()
+        self.addSubview(spinner)
+        
+        lowestLabel.text = NSLocalizedString("Lowest:       ", comment: "")
+        highestLabel.text = NSLocalizedString("Highest:       ", comment: "")
+        currentLabel.text = NSLocalizedString("Current:       ", comment: "")
+        
+        // FIXME: trick
+        
+        switch time.lowercased() {
+        case "7d":
+            let space = "                 "
+            bottomLabel.text = "12" + space + "16" + space + "20" + space + "24" + space + "28"
+        case "1m":
+            let space = "                     "
+            bottomLabel.text = "     06" + space + "13" + space + "21" + space + "28"
+        case "3m":
+            let space = "                    "
+            bottomLabel.text = space + space + "January" + space + space + space
+        case "1y":
+            let space = "              "
+            bottomLabel.text = "April" + space + "July" + space + "October" + space + "January"
+        case "3y":
+            let space = "                 "
+            bottomLabel.text = space + space + "2015" + space + space + "2016"
+        default:
+            break
+        }
         
         if currencyOne.currency == "USD"  {
             
@@ -155,6 +188,7 @@ class CXCRatesDetailView: UIView {
                 
                 DispatchQueue.main.sync {
                     self.refreshRateLineViewAndBottomLabels(points: points)
+                    spinner.removeFromSuperview()
                 }
             }
         }
@@ -173,6 +207,7 @@ class CXCRatesDetailView: UIView {
                 
                 DispatchQueue.main.sync {
                     self.refreshRateLineViewAndBottomLabels(points: points)
+                    spinner.removeFromSuperview()
                 }
             }
         }
@@ -182,7 +217,13 @@ class CXCRatesDetailView: UIView {
             
             CXCNetworking.getDataFrom(currency: currencyOne.currency, time: time) { data in
                 
+                self.ratesOne = [CGFloat]()
+                for rate in data {
+                    self.ratesOne?.append(rate.1)
+                }
+                
                 bothFinished = !bothFinished
+                
                 if bothFinished {
                     
                     // 1 / one * two
@@ -190,12 +231,15 @@ class CXCRatesDetailView: UIView {
                     var points = [CGFloat]()
                     
                     for rate in data.enumerated() {
+                                                if rate.offset < self.ratesTwo!.count {
                         let point = 1 / rate.element.1 * self.ratesTwo![rate.offset]
                         points.append(point)
+                        }
                     }
                     
                     DispatchQueue.main.sync {
                         self.refreshRateLineViewAndBottomLabels(points: points)
+                        spinner.removeFromSuperview()
                     }
                     
                 }
@@ -203,7 +247,13 @@ class CXCRatesDetailView: UIView {
             
             CXCNetworking.getDataFrom(currency: currencyTwo.currency, time: time) { data in
                 
+                self.ratesTwo = [CGFloat]()
+                for rate in data {
+                    self.ratesTwo?.append(rate.1)
+                }
+                
                 bothFinished = !bothFinished
+                
                 if bothFinished {
                     
                     // 1 / one * two
@@ -211,12 +261,15 @@ class CXCRatesDetailView: UIView {
                     var points = [CGFloat]()
                     
                     for rate in data.enumerated() {
+                        if rate.offset < self.ratesOne!.count {
                         let point = 1 / self.ratesOne![rate.offset] * rate.element.1
                         points.append(point)
+                        }
                     }
                     
                     DispatchQueue.main.sync {
                         self.refreshRateLineViewAndBottomLabels(points: points)
+                        spinner.removeFromSuperview()
                     }
                 }
             }
@@ -245,20 +298,6 @@ class CXCRatesDetailView: UIView {
          maskLayer.path = path.cgPath
          flagOneButton.imageView?.layer.mask = maskLayer
          */
-        // TODO: del
-        
-        let dummy = UIView()// frame: CGRect(x: 0, y: 307.yppi, width: screenWidth, height: 250.yppi)
-        dummy.backgroundColor = .brown
-        self.addSubview(dummy)
-        dummy.snp.makeConstraints { make in
-            make.top.equalTo(self.oneYearButton.snp.bottom).offset(20)
-            make.left.right.equalTo(self)
-            make.bottom.equalTo(bottomBackgroundView.snp.top)
-        }
-        
-        lowestLabel.text = "1990"
-        currentLabel.text = "2000"
-        highestLabel.text = "2017"
     }
     
     
@@ -364,19 +403,19 @@ class CXCRatesDetailView: UIView {
         self.addSubview(self.rateLineView!)
         
         self.rateLineView?.snp.makeConstraints { make in
-            make.top.equalTo(self.oneYearButton.snp.bottom).offset(20)
+            make.top.equalTo(self.oneYearButton.snp.bottom).offset(50.yppi)
             make.left.right.equalTo(self)
-            make.bottom.equalTo(bottomBackgroundView.snp.top)
+            make.bottom.equalTo(bottomBackgroundView.snp.top).offset(-30.yppi)
         }
         
         lowestLabel.text = NSLocalizedString("Lowest:", comment: "") + String(Float(points.min()!))
         highestLabel.text = NSLocalizedString("Highest:", comment: "") + String(Float(points.max()!))
-        let current = 1.0 / currentCurrencyDict[self.currencyOne.currency]! * currentCurrencyDict[self.currencyTwo.currency]!
+        let one = "USD/" + self.currencyOne.currency
+        let two = "USD/" + self.currencyTwo.currency
+        let current = 1.0 / currentCurrencyDict[one]! * currentCurrencyDict[two]!
         currentLabel.text = NSLocalizedString("Current:", comment: "") + String(current)
     }
     
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         let pathLine = UIBezierPath()
         UIColor(hex: "#D3D8E6").setStroke()
@@ -390,8 +429,7 @@ class CXCRatesDetailView: UIView {
     func exchangeCurrencies() {
         swap(&currencyOne, &currencyTwo)
         setupFlags()
-        
-        
+        drawRateLines(time: selectTime)
     }
     
     func setupFlags() {

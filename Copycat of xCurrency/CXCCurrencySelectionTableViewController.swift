@@ -11,16 +11,16 @@ import UIKit
 class CXCCurrencySelectionTableViewController: UITableViewController {
     static let reuseIdentifier = "reuseIdentifier"
     unowned let lastCell:CXCMainTableViewCell
-//    func getLastCell() -> CXCMainTableViewCell {
-//        var parentVC:CXCMainViewController?
-//        for vc in self.navigationController!.viewControllers {
-//            if vc is CXCMainViewController {
-//                parentVC = vc as? CXCMainViewController
-//            }
-//        }
-//        return parentVC!.tableViewVC.selectedCell!
-//    }
-
+    //    func getLastCell() -> CXCMainTableViewCell {
+    //        var parentVC:CXCMainViewController?
+    //        for vc in self.navigationController!.viewControllers {
+    //            if vc is CXCMainViewController {
+    //                parentVC = vc as? CXCMainViewController
+    //            }
+    //        }
+    //        return parentVC!.tableViewVC.selectedCell!
+    //    }
+    
     init(fromCell cell:CXCMainTableViewCell) {
         lastCell = cell
         super.init(nibName: nil, bundle: nil)
@@ -43,32 +43,32 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         self.tableView.sectionIndexBackgroundColor = .gray
         self.tableView.sectionIndexTrackingBackgroundColor = .black
     }
-
+    
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return ["#", "$", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "Y", "Z"]
     }
     
-//    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-//        return index
-//    }
+    //    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    //        return index
+    //    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return allCurrencies.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return allCurrencies[section].count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: CXCCurrencySelectionTableViewController.reuseIdentifier)
@@ -79,7 +79,7 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         cell?.contentView.backgroundColor = .clear
         let entity = allCurrencies[indexPath.section][indexPath.row]
         cell!.textLabel?.text = entity.fullName + " - " + entity.currency
-//        cell?.textLabel?.textColor = .white// xC
+        //        cell?.textLabel?.textColor = .white// xC
         if fourVisibleCurrencis.contains(entity.type) {
             cell?.detailTextLabel?.text = NSLocalizedString("Selected", comment: "")
             if entity.currency == lastCell.currencyLabel.text {
@@ -98,7 +98,7 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel.init()
-
+        
         switch section {
         case 0:
             label.text = NSLocalizedString("    Common Currency", comment: "")
@@ -153,7 +153,7 @@ class CXCCurrencySelectionTableViewController: UITableViewController {
         case 25:
             label.text = NSLocalizedString("    Z", comment: "")
         default:
-break
+            break
         }
         label.backgroundColor = UIColor(hex: "#E6EAF2")
         label.textColor = UIColor(hex: "#8891A7")
@@ -166,55 +166,55 @@ break
         lastCell.configureCell(entity: entity)
         //let parentVC = self.navigationController?.presentingViewController//self.presentingViewController as! CXCMainViewController
         // parentVC.tableViewVC.testCurrencis ...
-//        let cell = tableView.cellForRow(at: indexPath)
+        //        let cell = tableView.cellForRow(at: indexPath)
         
         let _ = self.navigationController?.popViewController(animated: true)
         
     }
     
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

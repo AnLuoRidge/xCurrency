@@ -10,7 +10,7 @@ import UIKit
 
 enum Currency: String  {
     case AUD = "AUD"
-    case BTC = "BTC"
+//    case BTC = "BTC"
     case CAD = "CAD"
     case CNH = "CNH"
     case CNY = "CNY"
@@ -132,7 +132,7 @@ enum Currency: String  {
  */
 
 let fullNameDict = ["AUD":"Australian Dollar",
-                    "BTC":"Bitcoin",
+//                    "BTC":"Bitcoin",
                     "CAD":"Canadian Dollar",
                     "CNH":"RMB Offshore",
                     "CNY":"Chinese Yuan",
@@ -155,13 +155,13 @@ let fullNameDict = ["AUD":"Australian Dollar",
                     "TWD":"Taiwan Dollar",
                     "USD":"United States Dollar",
                     "VND":"Vietnam Dong",
-                    "XAU":"Gold",
-                    "XAG":"Silver",
+                    "XAU":"Gold 暂无数据",
+                    "XAG":"Silver 暂无数据",
                     "YER":"Yemen Riyal",
                     "ZMW":"Zambian Kwacha"]
 
 let symbolDict = ["AUD":"$",
-                  "BTC":"฿",
+//                  "BTC":"฿",
                   "CAD":"$",
                   "CNH":"￥",
                   "CNY":"￥",
@@ -197,18 +197,19 @@ var currentCurrencyDict:[String:Float] = ["CNY/HKD":1.4,
                                           "CNY/JPY":14,
                                           "USD/CNY":6.8665,
                                           "USD/AUD":1.2968,
+                                          "USD/USD":1.0,
                                           "USD/EUR":0.8,
                                           "USD/HKD":7.5,
                                           "USD/JPY":113.393]
 
 var commonCurrencies = [CXCCurrencyModel.init(currency: .CNY),
-                               CXCCurrencyModel.init(currency: .USD),
-                               CXCCurrencyModel.init(currency: .JPY),
-                               CXCCurrencyModel.init(currency: .AUD),
+                        CXCCurrencyModel.init(currency: .USD),
+                        CXCCurrencyModel.init(currency: .JPY),
+                        CXCCurrencyModel.init(currency: .AUD),
 ]
 let preciousCurrencies = [CXCCurrencyModel(currencyEntity: .XAU), CXCCurrencyModel(currencyEntity: .XAG)]
 let aCurrencies = [CXCCurrencyModel(currencyEntity: .AUD)]
-let bCurrencies = [CXCCurrencyModel(currencyEntity: .BTC)]
+let bCurrencies = [CXCCurrencyModel(currencyEntity: .GBP)]
 let cCurrencies = [CXCCurrencyModel(currencyEntity: .CNY)]
 let dCurrencies = [CXCCurrencyModel(currencyEntity: .DKK)]
 let eCurrencies = [CXCCurrencyModel(currencyEntity: .EUR)]
@@ -232,31 +233,31 @@ let vCurrencies = [CXCCurrencyModel(currencyEntity: .VND)]
 let yCurrencies = [CXCCurrencyModel(currencyEntity: .YER)]
 let zCurrencies = [CXCCurrencyModel(currencyEntity: .ZMW)]
 let allCurrencies = [commonCurrencies,
-                         preciousCurrencies,
-                         aCurrencies,
-                         bCurrencies,
-                         cCurrencies,
-                         dCurrencies,
-                         eCurrencies,
-                         fCurrencies,
-                         gCurrencies,
-                         hCurrencies,
-                         iCurrencies,
-                         jCurrencies,
-                         kCurrencies,
-                         lCurrencies,
-                         mCurrencies,
-                         nCurrencies,
-                         oCurrencies,
-                         pCurrencies,
-                         qCurrencies,
-                         rCurrencies,
-                         sCurrencies,
-                         tCurrencies,
-                         uCurrencies,
-                         vCurrencies,
-                         yCurrencies,
-                         zCurrencies]
+                     preciousCurrencies,
+                     aCurrencies,
+                     bCurrencies,
+                     cCurrencies,
+                     dCurrencies,
+                     eCurrencies,
+                     fCurrencies,
+                     gCurrencies,
+                     hCurrencies,
+                     iCurrencies,
+                     jCurrencies,
+                     kCurrencies,
+                     lCurrencies,
+                     mCurrencies,
+                     nCurrencies,
+                     oCurrencies,
+                     pCurrencies,
+                     qCurrencies,
+                     rCurrencies,
+                     sCurrencies,
+                     tCurrencies,
+                     uCurrencies,
+                     vCurrencies,
+                     yCurrencies,
+                     zCurrencies]
 
 
 var fourVisibleCurrencis = [Currency.CNY, Currency.USD, Currency.EUR, Currency.HKD]

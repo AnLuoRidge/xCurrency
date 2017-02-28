@@ -28,7 +28,7 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     }
     
     var previousRespondingTextField = UITextField()
-
+    
     lazy var leftNaviBtn: UIBarButtonItem = {
         let btn = UIBarButtonItem.init(image: UIImage.init(named: "btn_setting"), style: .plain, target: self, action: nil)
         return btn
@@ -37,9 +37,9 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-
+        
         self.edgesForExtendedLayout = []
-        self.title = NSLocalizedString("极简汇率", comment: "comment")
+        self.title = NSLocalizedString("xCurrency", comment: "")// 极简汇率
         self.navigationItem.leftBarButtonItem = leftNaviBtn
         self.view.backgroundColor = .white
         keyboardView = CXCKeyboardView.init(delegate: self)
@@ -53,8 +53,11 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
                 }
             }
         }
-        //        self.observeValue(forKeyPath: "tableViewVC.tableView.indexPathForSelectedRow", of: <#T##Any?#>, change: <#T##[NSKeyValueChangeKey : Any]?#>, context: <#T##UnsafeMutableRawPointer?#>)
         setupConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableViewVC.tableView.reloadData()
     }
     
     func proceedTextFromKeyboard(sender: UIButton) {
@@ -65,16 +68,6 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
                 previousRespondingTextField = respondingTF
                 updateRates(focusedCell: focusedCell)
             }
-            /*
-             add
-             add, anyway
-             Only can have one dot!
-             del
-             删完为空就填 placeholder
-             删成 2. 就要自动补 0？
-             
-             */
-            //
             
             let key = sender.title(for: .normal)!
             let val:Float?
@@ -128,16 +121,6 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
             }
             
         }
-        
-        //        responsingCell.numTextField.text = responsingCell.numTextField.text! + key
-        // += fail, because getter needs unwrap
-        
-        //keyboardView?.observeValue(forKeyPath: <#T##String?#>, of: <#T##Any?#>, change: <#T##[NSKeyValueChangeKey : Any]?#>, context: <#T##UnsafeMutableRawPointer?#>)
-//        
-//        for cell in tableViewVC.cells {
-//            print(cell.rate)
-//        }
-//        print("------")
     }
     
     func updateRates(focusedCell:CXCMainTableViewCell) {
@@ -170,9 +153,7 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
                             otherCell.rate = currentCurrencyDict[currencyTwo]!
                         }
                     }
-                    
-//                    currentCurrencyDict.updateValue(otherCell.rate, forKey: focusedCell.currencyLabel.text! + "/" + otherCell.currencyLabel.text!)
-                    //(1/美中) x 中日
+                    //(1/AB) x BC
                 }
             }
         }

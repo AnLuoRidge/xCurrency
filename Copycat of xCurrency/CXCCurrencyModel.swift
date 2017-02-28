@@ -9,7 +9,7 @@
 import UIKit
 
 class CXCCurrencyModel: NSObject {
-
+    
     let flagImage: UIImage
     let fullName: String
     let currency: String
@@ -27,5 +27,5 @@ class CXCCurrencyModel: NSObject {
     convenience init(currencyEntity: Currency) {
         self.init(currency: currencyEntity)
     }
-
+    
 }

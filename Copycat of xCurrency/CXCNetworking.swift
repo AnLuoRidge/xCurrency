@@ -11,6 +11,7 @@ import UIKit
 class CXCNetworking: NSObject {
     
     static var firstLoaded = false
+    static let filePath = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/Latest Currency Data.json")
     
     class func getAllCurrentCurrenciesData(completion:@escaping ()->Void) {
         let session = URLSession.init(configuration: URLSessionConfiguration.default)
@@ -18,9 +19,8 @@ class CXCNetworking: NSObject {
             
             do {
                 if data != nil {
-                    // TODO: save to ...and open at start while fetching
-//                    FileManager.
-                    //if JSONSerialization.isValidJSONObject(data) {
+                    
+                    try! data?.write(to: filePath)
                     let dict1 = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
                     
                     let list = dict1["list"]! as! [String:Any];
@@ -36,13 +36,15 @@ class CXCNetworking: NSObject {
                         
                         
                     }
+                    currentCurrencyDict.updateValue(Float(1.0), forKey: "USD/USD")
                     completion()
                 }
             } catch {
-                
+                useLocalData()
             }
             
         }
+        task.resume()
     }
     // class == static
     class func getDataFrom(currency: String, time:String, completion: @escaping ([(Date, CGFloat)]) -> Void) {
@@ -85,9 +87,9 @@ class CXCNetworking: NSObject {
                         let date: Date
                         // timestamp
                         if time == "7d" {
-                        date = Date.init(timeIntervalSince1970: element["Timestamp"]! as! TimeInterval)
+                            date = Date.init(timeIntervalSince1970: element["Timestamp"]! as! TimeInterval)
                         }
-                        // date
+                            // date
                         else {
                             let formatter = DateFormatter()
                             formatter.dateFormat = "yyyyMMdd"
@@ -102,7 +104,33 @@ class CXCNetworking: NSObject {
             }
         }
         // TODO: open
-//                task.resume()
+        task.resume()
     }
-
+    
+    class func useLocalData() {
+        
+        let manager = FileManager.default
+        let data = manager.contents(atPath: filePath.absoluteString)
+        if data != nil {
+            do {
+                let dict1 = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
+                
+                let list = dict1["list"]! as! [String:Any];
+                //let json1 = json["resources"] as! [[String:Any]];
+                for dict in list["resources"] as! [[String:Any]] {
+                    let resource = dict["resource"]! as! [String:Any];
+                    let fields = resource["fields"] as! [String:String];
+                    if let price = fields["price"] {
+                        if let name = fields["name"] {
+                            currentCurrencyDict.updateValue(Float(price)!, forKey: name)
+                        }
+                    }
+                }
+            } catch {
+                
+            }
+        }
+        currentCurrencyDict.updateValue(Float(1.0), forKey: "USD/USD")
+    }
+    
 }
