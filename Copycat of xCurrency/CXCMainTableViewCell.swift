@@ -10,37 +10,19 @@ import UIKit
 
 protocol MainTableViewCellDelegate: NSObjectProtocol {
     func leftSwipeAction(currency: String)
-    //    var rightSwipeAction:(_ currency: String)-> Void {get}
     func rightSwipeAction(cell:CXCMainTableViewCell)
 }
 
-
-class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
+class CXCMainTableViewCell: UITableViewCell {
     
-    //    override func awakeFromNib() {
-    //        super.awakeFromNib()
-    //        // Initialization code
-    //    }
-    //    var leftSwipeAction:(_ currency: String) -> Void
     let cellWidth = screenWidth
     weak var delegate:MainTableViewCellDelegate?
+    
     lazy var backgroundScrollView:UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
-        //        view.setContentOffset(CGPoint.init(x: 375, y: 0), animated: true)
-        //        view.contentSize = CGSize(width: 375 * 3, height: 40 * 3)
-        //        view.isDirectionalLockEnabled = true
-        //        let aView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 40))
-        //        let bView = UIView(frame: CGRect(x: 375, y: 0, width: 375, height: 40))
-        //        let cView = UIView(frame: CGRect(x: 375 * 2, y: 0, width: 375, height: 40))
-        //        aView.backgroundColor = .red
-        //        bView.backgroundColor = .blue
-        //        cView.backgroundColor = .green
-        //        view.addSubview(aView)
-        //        view.addSubview(bView)
-        //        view.addSubview(cView)
         return view
     }()
     
@@ -50,9 +32,39 @@ class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
         return view
     }()
     
+    lazy var ratesDetailsImageView:UIImageView = {
+        let view = UIImageView(image: #imageLiteral(resourceName: "汇率详情"))
+//        view.backgroundColor = .clear
+        return view
+    }()
+    
+    lazy var ratesDetailsLabel:UILabel = {
+        let lbl = UILabel()
+//        lbl.backgroundColor = .clear
+        lbl.text = NSLocalizedString("Rates Details", comment: "")
+        lbl.font = UIFont.systemFont(ofSize: 16.0)
+        lbl.textColor = .white
+        return lbl
+    }()
+    
+    lazy var switchCurrencyImageView:UIImageView = {
+        let view = UIImageView(image: #imageLiteral(resourceName: "汇率转换"))
+//        view.backgroundColor = .clear
+        return view
+    }()
+    
+    lazy var switchCurrencyLabel:UILabel = {
+        let lbl = UILabel()
+//        lbl.backgroundColor = .clear
+        lbl.text = NSLocalizedString("Switch Currency", comment: "")
+        lbl.font = UIFont.systemFont(ofSize: 16.0)
+        lbl.textColor = .white
+        return lbl
+    }()
+    
     lazy var middleView:UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+//        view.backgroundColor = .clear
         return view
     }()
     
@@ -64,12 +76,12 @@ class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     var flagImageView = UIImageView()
     var currencyLabel = UILabel()
-    //    var fomulaTextField = UITextField()
+    
     lazy var numTextField: UITextField =  {
-        //get {
         let tf = UITextField()
         tf.textAlignment = .right
         tf.font = UIFont.systemFont(ofSize: 18.0)
+        tf.inputView = UIView()
         return tf
     }()
     
@@ -90,17 +102,10 @@ class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
         numTextField.delegate = self
         UITextField.appearance().tintColor = UIColor(hex: "#2CC17B")
         backgroundScrollView.delegate = self
-        self.contentView.addSubview(backgroundScrollView)
-        backgroundScrollView.addSubview(leftView)
-        backgroundScrollView.addSubview(middleView)
-        backgroundScrollView.addSubview(rightView)
-        middleView.addSubview(flagImageView)
-        middleView.addSubview(currencyLabel)
-        middleView.addSubview(numTextField)
-        middleView.addSubview(fullNameLabel)
+        
+        addSubviews()
         setupConstraints()
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -108,18 +113,29 @@ class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func configureCell(entity: CXCCurrencyModel) {
         flagImageView.image = entity.flagImage
-        //        currencyLabel = UILabel()
         currencyLabel.text = entity.currency
         fullNameLabel.text = entity.fullName + " " + entity.symbol
+    }
+    
+    func addSubviews() {
+        self.contentView.addSubview(backgroundScrollView)
+        backgroundScrollView.addSubview(leftView)
+        backgroundScrollView.addSubview(middleView)
+        backgroundScrollView.addSubview(rightView)
+        leftView.addSubview(switchCurrencyLabel)
+        leftView.addSubview(switchCurrencyImageView)
+        rightView.addSubview(ratesDetailsLabel)
+        rightView.addSubview(ratesDetailsImageView)
+        middleView.addSubview(flagImageView)
+        middleView.addSubview(currencyLabel)
+        middleView.addSubview(numTextField)
+        middleView.addSubview(fullNameLabel)
     }
     
     func setupConstraints() {
         
         backgroundScrollView.snp.makeConstraints { make in
             make.top.bottom.left.right.equalTo(backgroundScrollView.superview!)
-            //            make.centerY.equalTo(self.contentView)
-            //            make.left.equalTo(self.contentView).offset(18.xppi)
-            //            make.width.height.equalTo(42.xppi)
         }
         backgroundScrollView.contentSize = CGSize(width: cellWidth * 3, height: 0)
         backgroundScrollView.contentOffset = CGPoint(x: cellWidth, y: 0)
@@ -127,6 +143,16 @@ class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
         leftView.snp.makeConstraints { make in
             make.left.equalTo(0)
             make.width.height.centerY.equalTo(self.contentView)
+        }
+        
+        switchCurrencyLabel.snp.makeConstraints { make in
+            make.right.equalTo(switchCurrencyLabel.superview!).offset(-26.xppi)
+            make.centerY.equalTo(self.contentView)
+        }
+        
+        switchCurrencyImageView.snp.makeConstraints { make in
+            make.right.equalTo(switchCurrencyLabel.snp.left).offset(-16.xppi)
+            make.centerY.equalTo(self.contentView)
         }
         
         middleView.snp.makeConstraints { make in
@@ -137,6 +163,16 @@ class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
         rightView.snp.makeConstraints { make in
             make.left.equalTo(cellWidth * 2)
             make.width.height.centerY.equalTo(self.contentView)
+        }
+        
+        ratesDetailsLabel.snp.makeConstraints { make in
+            make.left.equalTo(ratesDetailsLabel.superview!).offset(27.xppi)
+            make.centerY.equalTo(self.contentView)
+        }
+        
+        ratesDetailsImageView.snp.makeConstraints { make in
+            make.left.equalTo(ratesDetailsLabel.snp.right).offset(16.xppi)
+            make.centerY.equalTo(self.contentView)
         }
         
         flagImageView.snp.makeConstraints { make in
@@ -165,17 +201,6 @@ class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
             make.width.equalTo(150.xppi)
             make.height.equalTo(17.yppi)
         }
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //        let cell = textField.superview?.superview?.superview?.superview as! CXCMainTableViewCell
-        self.setSelected(true, animated: true)
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        //        let cell = textField.superview?.superview?.superview?.superview as! CXCMainTableViewCell
-        self.setSelected(false, animated: true)
     }
     
 }
@@ -215,5 +240,16 @@ extension CXCMainTableViewCell: UIScrollViewDelegate {
         
     }
     
+}
+
+extension CXCMainTableViewCell:UITextFieldDelegate {
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        self.setSelected(true, animated: true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.setSelected(false, animated: true)
+    }
 }
