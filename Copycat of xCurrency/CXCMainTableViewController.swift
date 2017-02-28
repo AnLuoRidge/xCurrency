@@ -17,7 +17,7 @@ class CXCMainTableViewController: UITableViewController {
     var textFields = [UITextField]()
     var textFieldIndex = 1000
     // DEBUG
-    let testCurrencis = [Currency.CNY, Currency.USD, Currency.EUR, Currency.HKD]
+    var visibleCurrencis = [Currency.CNY, Currency.USD, Currency.EUR, Currency.HKD]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,8 +68,12 @@ self.tableView.isScrollEnabled = false
         textFields.append(cell.numTextField)
 
         // DEBUG
-        let entity = CXCCurrencyModel.init(currency: testCurrencis[indexPath.row])
-        cell.rate = Float(textFieldIndex - 999)
+        let entity = CXCCurrencyModel(currency: visibleCurrencis[indexPath.row])
+        if let rate = currentCurrencyDict[entity.currency] {
+            cell.rate = rate
+        } else {
+        cell.rate = 1.0
+        }
         // DEBUG
         cell.configureCell(entity: entity)
 //self.presentingViewController
@@ -94,25 +98,33 @@ self.tableView.isScrollEnabled = false
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         selectedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
-        let action = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("choose currency", comment: "")) { (action, indexPath) in
+        let backgroundColor = UIColor(hex: "#8891A7")
+        
+        // switch currency action
+        let switchCurrencyAction = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("Switch Currency", comment: "")) { (action, indexPath) in
             self.navigationController?.pushViewController(CXCCurrencySelectionTableViewController(), animated: true)
         }
-        action.backgroundColor = .green
+        switchCurrencyAction.backgroundColor = backgroundColor
         
-        let rateHistory = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("rateHistory", comment: "")) { (action, indexPath) in
+        // rates details action
+        let ratesDetailsAction = UITableViewRowAction.init(style: UITableViewRowActionStyle.default, title: NSLocalizedString("Rates Details", comment: "")) { (action, indexPath) in
             
-            var selectedCell:CXCMainTableViewCell
+            var focusedCell:CXCMainTableViewCell
             if indexPath.row != 0 {
-                selectedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
+                focusedCell = tableView.cellForRow(at: indexPath) as! CXCMainTableViewCell
             } else {
-                selectedCell = self.cells[1]
+                focusedCell = self.cells[1]
             }
             
-self.navigationController?.pushViewController(CXCRatesDetailViewController.init(currencyOne: (self.cells.first?.currencyLabel.text)!, currencyTwo: selectedCell.currencyLabel.text!), animated: true)
+self.navigationController?.pushViewController(CXCRatesDetailViewController.init(currencyOne: (self.cells.first?.currencyLabel.text)!, currencyTwo: focusedCell.currencyLabel.text!), animated: true)
         }
-        rateHistory.backgroundColor = .blue
+        ratesDetailsAction.backgroundColor = .gray
         
-        return [action, rateHistory]
+        return [switchCurrencyAction, ratesDetailsAction]
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        textFields[indexPath.row].becomeFirstResponder()
     }
     /*
     // Override to support conditional editing of the table view.

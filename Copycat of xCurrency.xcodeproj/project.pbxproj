@@ -20,7 +20,7 @@
 		D99A16BC1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16BB1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift */; };
 		D99A16CA1E4C913E001AD0F4 /* CXCKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */; };
 		D9F24CDF1E617A440096E420 /* CXCRatesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */; };
-		D9F24CE11E617D650096E420 /* CXCNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CE01E617D650096E420 /* CXCNetwork.swift */; };
+		D9F24CE11E617D650096E420 /* CXCNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CE01E617D650096E420 /* CXCNetworking.swift */; };
 		D9F24CE31E640E2E0096E420 /* CXCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CE21E640E2E0096E420 /* CXCConstants.swift */; };
 		D9F24CE51E641F4C0096E420 /* CXCExtensions + UIColor + Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F24CE41E641F4B0096E420 /* CXCExtensions + UIColor + Number.swift */; };
 		D9F6CE8D1E4D649E002E7424 /* CXCMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */; };
@@ -55,7 +55,7 @@
 		D956B9A61E5C39FF0069AC67 /* CXCRatesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCRatesDetailViewController.swift; sourceTree = "<group>"; };
 		D99A16981E4C8E99001AD0F4 /* Copycat of xCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Copycat of xCurrency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99A169B1E4C8E99001AD0F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CXCMainViewController.swift; sourceTree = "<group>"; };
+		D99A169D1E4C8E99001AD0F4 /* CXCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CXCMainViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D99A16A51E4C8E9A001AD0F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D99A16A71E4C8E9A001AD0F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,8 +66,8 @@
 		D99A16BB1E4C8E9C001AD0F4 /* Copycat_of_xCurrencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copycat_of_xCurrencyUITests.swift; sourceTree = "<group>"; };
 		D99A16BD1E4C8E9C001AD0F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D99A16C91E4C913E001AD0F4 /* CXCKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCKeyboardView.swift; sourceTree = "<group>"; };
-		D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCRatesDetailView.swift; sourceTree = "<group>"; };
-		D9F24CE01E617D650096E420 /* CXCNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCNetwork.swift; sourceTree = "<group>"; };
+		D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CXCRatesDetailView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D9F24CE01E617D650096E420 /* CXCNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCNetworking.swift; sourceTree = "<group>"; };
 		D9F24CE21E640E2E0096E420 /* CXCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCConstants.swift; sourceTree = "<group>"; };
 		D9F24CE41E641F4B0096E420 /* CXCExtensions + UIColor + Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CXCExtensions + UIColor + Number.swift"; sourceTree = "<group>"; };
 		D9F6CE8C1E4D649D002E7424 /* CXCMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCMainTableViewController.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				D956B9A61E5C39FF0069AC67 /* CXCRatesDetailViewController.swift */,
 				D9F24CDE1E617A440096E420 /* CXCRatesDetailView.swift */,
 				D956B9A41E5C38180069AC67 /* CXCHistoricalRateLineView.swift */,
-				D9F24CE01E617D650096E420 /* CXCNetwork.swift */,
+				D9F24CE01E617D650096E420 /* CXCNetworking.swift */,
 				D99A16A21E4C8E9A001AD0F4 /* Assets.xcassets */,
 				D99A16A41E4C8E9A001AD0F4 /* LaunchScreen.storyboard */,
 				D99A16A71E4C8E9A001AD0F4 /* Info.plist */,
@@ -389,7 +389,7 @@
 				D9F6CE911E4D89CC002E7424 /* CXCCurrencyModel.swift in Sources */,
 				D956B9A51E5C38190069AC67 /* CXCHistoricalRateLineView.swift in Sources */,
 				D9F6CE8F1E4D64CE002E7424 /* CXCMainTableViewCell.swift in Sources */,
-				D9F24CE11E617D650096E420 /* CXCNetwork.swift in Sources */,
+				D9F24CE11E617D650096E420 /* CXCNetworking.swift in Sources */,
 				D9F24CE31E640E2E0096E420 /* CXCConstants.swift in Sources */,
 				D9F24CE51E641F4C0096E420 /* CXCExtensions + UIColor + Number.swift in Sources */,
 				D9F24CDF1E617A440096E420 /* CXCRatesDetailView.swift in Sources */,

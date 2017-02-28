@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CXCMainTableViewCell: UITableViewCell {
+class CXCMainTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     //    override func awakeFromNib() {
     //        super.awakeFromNib()
@@ -27,7 +27,7 @@ class CXCMainTableViewCell: UITableViewCell {
     
     lazy var fullNameLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont.systemFont(ofSize: 12.0)
+        lbl.font = UIFont.systemFont(ofSize: 14.0)
         lbl.textAlignment = .right
         return lbl
     }()
@@ -36,6 +36,7 @@ class CXCMainTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        numTextField.delegate = self
         UITextField.appearance().tintColor = UIColor(hex: "#2CC17B")
         self.contentView.addSubview(flagImageView)
         self.contentView.addSubview(currencyLabel)
@@ -62,8 +63,7 @@ class CXCMainTableViewCell: UITableViewCell {
         flagImageView.snp.makeConstraints { make in
             make.centerY.equalTo(self.contentView)
             make.left.equalTo(self.contentView).offset(18.xppi)
-            make.width.equalTo(30.xppi)
-            make.height.equalTo(30.yppi)
+            make.width.height.equalTo(42.xppi)
         }
         
         currencyLabel.snp.makeConstraints { make in
@@ -75,7 +75,7 @@ class CXCMainTableViewCell: UITableViewCell {
 
         numTextField.snp.makeConstraints { make in
             make.centerY.equalTo(self.contentView).offset(-5.yppi)
-            make.right.equalTo(self.contentView).offset(-34.0.xppi)
+            make.right.equalTo(self.contentView).offset(-29.0.xppi)
             make.width.equalTo(100.xppi)
             make.height.equalTo(28.yppi)
         }
@@ -83,19 +83,21 @@ class CXCMainTableViewCell: UITableViewCell {
         fullNameLabel.snp.makeConstraints { make in
             make.top.equalTo(numTextField.snp.bottom)
             make.right.equalTo(self.contentView).offset(-18.xppi)
-            make.width.equalTo(100.xppi)
+            make.width.equalTo(150.xppi)
             make.height.equalTo(17.yppi)
         }
         
     }
     
-
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let cell = textField.superview?.superview as! CXCMainTableViewCell
+        cell.setSelected(true, animated: true)
+        return true
+    }
     
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-//        // Configure the view for the selected state
-//    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let cell = textField.superview?.superview as! CXCMainTableViewCell
+        cell.setSelected(false, animated: true)
+    }
     
 }

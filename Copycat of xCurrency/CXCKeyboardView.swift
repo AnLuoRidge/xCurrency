@@ -22,9 +22,9 @@ class CXCKeyboardView: UIView {
         btn.setTitle("1", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
         btn.setBackgroundImage(UIImage.init(named: "number_key_1"), for: .normal)
-        let view = UIView.init(frame: CGRect.init(x: 30, y: 30, width: 15, height: 24))
-        view.backgroundColor = .red
-        btn.addSubview(view)
+//        let view = UIView.init(frame: CGRect.init(x: 30, y: 30, width: 15, height: 24))
+//        view.backgroundColor = .red
+//        btn.addSubview(view)
         return btn
     }()
     
@@ -32,7 +32,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("2", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_2"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_2"), for: .normal)
         return btn
     }()
     
@@ -40,7 +40,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("3", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_3"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_3"), for: .normal)
         return btn
     }()
     
@@ -48,7 +48,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("4", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_4"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_4"), for: .normal)
         return btn
     }()
 
@@ -56,7 +56,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("5", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_5"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_5"), for: .normal)
         return btn
     }()
     
@@ -64,7 +64,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("6", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_6"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_6"), for: .normal)
         return btn
     }()
     
@@ -72,7 +72,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("7", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_7"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_7"), for: .normal)
         return btn
     }()
     
@@ -80,7 +80,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("8", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_8"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_8"), for: .normal)
         return btn
     }()
     
@@ -88,7 +88,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("9", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_9"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_9"), for: .normal)
         return btn
     }()
     
@@ -96,7 +96,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("0", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_0"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_0"), for: .normal)
         return btn
     }()
     
@@ -104,7 +104,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle(".", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_14"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_14"), for: .normal)
         return btn
     }()
     
@@ -112,7 +112,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("+", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_11"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_11"), for: .normal)
         return btn
     }()
     
@@ -120,7 +120,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("-", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_12"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_12"), for: .normal)
         return btn
     }()
     
@@ -128,7 +128,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("*", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_13"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_13"), for: .normal)
         return btn
     }()
     
@@ -136,7 +136,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("/", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_16"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_16"), for: .normal)
         return btn
     }()
     
@@ -144,7 +144,7 @@ class CXCKeyboardView: UIView {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("del", for: .normal)
         btn.setTitleColor(.clear, for: .normal)
-        btn.setImage(UIImage.init(named: "number_key_15"), for: .normal)
+        btn.setBackgroundImage(UIImage.init(named: "number_key_15"), for: .normal)
         return btn
     }()
     
@@ -153,7 +153,7 @@ class CXCKeyboardView: UIView {
     init(delegate:CXCKeyboardDelegate) {
         self.delegate = delegate
         super.init(frame: CGRect.zero)
-        self.backgroundColor = .gray
+        self.backgroundColor = UIColor(hex: "#313943")
         setupSubviews()
         setupConstraints()
     }

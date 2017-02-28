@@ -9,8 +9,8 @@
 import UIKit
 
 class CXCRatesDetailView: UIView {
-
-        var dateButtons = [UIButton]()
+    
+    var dateButtons = [UIButton]()
     var rateLineView: CXCHistoricalRateLineView?
     
     // TODO: move to VC
@@ -41,13 +41,13 @@ class CXCRatesDetailView: UIView {
         btn.addTarget(self, action: #selector(exchangeCurrencies), for: .touchUpInside)
         return btn
     }()
-
+    
     lazy var sevenDaysButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle(NSLocalizedString("7D", comment: ""), for: .normal)
         btn.setTitleColor(dateButtonNormalColor, for: .normal)
         btn.setTitleColor(dateButtonSelectedColor, for: .selected)
-                btn.isSelected = true
+        btn.isSelected = true
         btn.addTarget(self, action: #selector(dateButtonsSelected(sender:)), for: .touchUpInside)
         return btn
     }()
@@ -118,7 +118,7 @@ class CXCRatesDetailView: UIView {
     
     lazy var bottomLabel: UILabel = {
         let lbl = UILabel(frame: CGRect(x: 18.xppi, y: 580.yppi, width: screenWidth, height: 19.yppi))
-        let space = "                "
+        let space = "                 "
         lbl.text = "08" + space + "12" + space + "20" + space + "26" + space + "30"
         lbl.textColor = dateButtonNormalColor
         lbl.font = UIFont.systemFont(ofSize: 16.0)
@@ -143,47 +143,26 @@ class CXCRatesDetailView: UIView {
         ratesTwo = nil
         
         if currencyOne.currency == "USD"  {
-            //ratesOne = Array.init(repeating: 1.0, count: 10000)
-
-            CXCNetwork.getDataFrom(currency: currencyTwo.currency, time: time) { data in
-                //            var rates = [CGFloat]()
-//                self.ratesTwo = [CGFloat]()
+            
+            CXCNetworking.getDataFrom(currency: currencyTwo.currency, time: time) { data in
+                
                 var points = [CGFloat]()
-
+                
                 for rate in data {
-//                    self.ratesTwo!.append(rate.1)
                     let point = rate.1//1 / self.ratesOne![rate.offset] * rate.element.1
                     points.append(point)
                 }
                 
-                    // 1 / one * two
-                    
-//                    for rate in self.ratesOne!.enumerated() {
-//                        let point = 1 / rate.element * self.ratesTwo![rate.offset]
-//                        points.append(point)
-//                    }
-                
                 DispatchQueue.main.sync {
-                    self.refreshRateLineView(points: points)
-//                    self.rateLineView?.frame = CGRect(x: 0, y: 400, width: screenWidth, height: 250)
-                    self.lowestLabel.text = NSLocalizedString("Lowest", comment: "") + String(Float(points.min()!))
+                    self.refreshRateLineViewAndBottomLabels(points: points)
                 }
-                    // TODO: constraints
-                    //            self.rateLineView?.snp.makeConstraints({ make in
-                    //                make.top.equalTo(self.oneYearButton.snp.bottom)
-                    //                make.left.right.equalTo(self)
-                    //                make.height.equalTo(60)
-                    //            })
-                
             }
         }
             
         else if currencyTwo.currency == "USD" {
-//            ratesTwo = Array.init(repeating: 1.0, count: 10000)
             
-            CXCNetwork.getDataFrom(currency: currencyOne.currency, time: time) { data in
-                //            var rates = [CGFloat]()
-//                self.ratesOne = [CGFloat]()
+            CXCNetworking.getDataFrom(currency: currencyOne.currency, time: time) { data in
+                
                 var points = [CGFloat]()
                 
                 for rate in data {
@@ -192,38 +171,17 @@ class CXCRatesDetailView: UIView {
                     points.append(point)
                 }
                 
-                // 1 / one * two
-                
-                //                    for rate in self.ratesOne!.enumerated() {
-                //                        let point = 1 / rate.element * self.ratesTwo![rate.offset]
-                //                        points.append(point)
-                //                    }
-                
                 DispatchQueue.main.sync {
-                    self.refreshRateLineView(points: points)
-
-//                    self.rateLineView?.frame = CGRect(x: 0, y: 400, width: screenWidth, height: 250)
-                    self.lowestLabel.text = NSLocalizedString("Lowest", comment: "") + String(Float(points.min()!))
+                    self.refreshRateLineViewAndBottomLabels(points: points)
                 }
-                // TODO: constraints
-                //            self.rateLineView?.snp.makeConstraints({ make in
-                //                make.top.equalTo(self.oneYearButton.snp.bottom)
-                //                make.left.right.equalTo(self)
-                //                make.height.equalTo(60)
-                //            })
-                
             }
         }
             // Neither of currencies == "USD"
         else {
             var bothFinished = true
             
-            CXCNetwork.getDataFrom(currency: currencyOne.currency, time: time) { data in
-                //            var rates = [CGFloat]()
-//                self.ratesOne = [CGFloat]()
-//                for rate in data {
-//                    self.ratesOne!.append(rate.1)
-//                }
+            CXCNetworking.getDataFrom(currency: currencyOne.currency, time: time) { data in
+                
                 bothFinished = !bothFinished
                 if bothFinished {
                     
@@ -236,26 +194,15 @@ class CXCRatesDetailView: UIView {
                         points.append(point)
                     }
                     
-//                    for rate in self.ratesOne!.enumerated() {
-//                        let point = 1 / rate.element * self.ratesTwo![rate.offset]
-//                        points.append(point)
-//                    }
                     DispatchQueue.main.sync {
-                        self.refreshRateLineView(points: points)
-
-//                        self.rateLineView?.frame = CGRect(x: 0, y: 400, width: screenWidth, height: 250)
-                                            self.lowestLabel.text = NSLocalizedString("Lowest", comment: "") + String(Float(points.min()!))
+                        self.refreshRateLineViewAndBottomLabels(points: points)
                     }
-
+                    
                 }
             }
             
-            CXCNetwork.getDataFrom(currency: currencyTwo.currency, time: time) { data in
-                //            var rates = [CGFloat]()
-                //                self.ratesOne = [CGFloat]()
-                //                for rate in data {
-                //                    self.ratesOne!.append(rate.1)
-                //                }
+            CXCNetworking.getDataFrom(currency: currencyTwo.currency, time: time) { data in
+                
                 bothFinished = !bothFinished
                 if bothFinished {
                     
@@ -268,23 +215,20 @@ class CXCRatesDetailView: UIView {
                         points.append(point)
                     }
                     
-                    self.refreshRateLineView(points: points)
+                    DispatchQueue.main.sync {
+                        self.refreshRateLineViewAndBottomLabels(points: points)
+                    }
                 }
             }
         }
     }
-
+    
     init(currencyOne one:CXCCurrencyModel, currencyTwo two:CXCCurrencyModel) {
         currencyOne = one
         currencyTwo = two
         super.init(frame: CGRect.zero)
         self.backgroundColor = .clear
-//        self.rateLineView?.removeFromSuperview()
-//        var rates = [CGFloat]()
-//        self.rateLineView = CXCHistoricalRateLineView.init(rates: rates)
-//        self.addSubview(self.rateLineView!)
-//        self.rateLineView?.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 150)
-
+        
         setupFlags()
         
         addSubviews()
@@ -293,14 +237,14 @@ class CXCRatesDetailView: UIView {
         dateButtons = [sevenDaysButton, oneMonthButton, threeMonthButton, oneYearButton, threeYearButton]
         /*
          // TODO: round flag
-        let path = UIBezierPath()
-        path.addArc(withCenter: flagOneButton.imageView!.center, radius: 15.0, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
-        UIColor.black.set()
-        path.fill()
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = path.cgPath
-        flagOneButton.imageView?.layer.mask = maskLayer
- */
+         let path = UIBezierPath()
+         path.addArc(withCenter: flagOneButton.imageView!.center, radius: 15.0, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+         UIColor.black.set()
+         path.fill()
+         let maskLayer = CAShapeLayer()
+         maskLayer.path = path.cgPath
+         flagOneButton.imageView?.layer.mask = maskLayer
+         */
         // TODO: del
         
         let dummy = UIView()// frame: CGRect(x: 0, y: 307.yppi, width: screenWidth, height: 250.yppi)
@@ -316,7 +260,7 @@ class CXCRatesDetailView: UIView {
         currentLabel.text = "2000"
         highestLabel.text = "2017"
     }
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -339,7 +283,7 @@ class CXCRatesDetailView: UIView {
     }
     
     func setupConstraints() {
-
+        
         let btnOffset = 57.0
         let btnWidth = 30
         let btnHeight = 10
@@ -414,16 +358,21 @@ class CXCRatesDetailView: UIView {
         }
     }
     
-    func refreshRateLineView(points:[CGFloat]) {
+    func refreshRateLineViewAndBottomLabels(points:[CGFloat]) {
         self.rateLineView?.removeFromSuperview()
         self.rateLineView = CXCHistoricalRateLineView.init(rates: points)
         self.addSubview(self.rateLineView!)
-
-                    self.rateLineView?.snp.makeConstraints { make in
-                        make.top.equalTo(self.oneYearButton.snp.bottom).offset(20)
-                        make.left.right.equalTo(self)
-                        make.bottom.equalTo(bottomBackgroundView.snp.top)
-                    }
+        
+        self.rateLineView?.snp.makeConstraints { make in
+            make.top.equalTo(self.oneYearButton.snp.bottom).offset(20)
+            make.left.right.equalTo(self)
+            make.bottom.equalTo(bottomBackgroundView.snp.top)
+        }
+        
+        lowestLabel.text = NSLocalizedString("Lowest", comment: "") + String(Float(points.min()!))
+        highestLabel.text = NSLocalizedString("Highest", comment: "") + String(Float(points.max()!))
+        let current = 1.0 / currentCurrencyDict[self.currencyOne.currency]! * currentCurrencyDict[self.currencyTwo.currency]!
+        currentLabel.text = NSLocalizedString("Current", comment: "") + String(current)
     }
     
     // Only override draw() if you perform custom drawing.
@@ -441,8 +390,8 @@ class CXCRatesDetailView: UIView {
     func exchangeCurrencies() {
         swap(&currencyOne, &currencyTwo)
         setupFlags()
-
-
+        
+        
     }
     
     func setupFlags() {

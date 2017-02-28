@@ -18,7 +18,7 @@ class CXCRatesDetailViewController: UIViewController {
         currencyOne = CXCCurrencyModel.init(currency: Currency(rawValue: one)!)
         currencyTwo = CXCCurrencyModel.init(currency: Currency(rawValue: two)!)
         super.init(nibName: nil, bundle: nil)
-        self.title = NSLocalizedString("Rate Detail", comment: "")
+        self.title = NSLocalizedString("Rates Details", comment: "")
     }
     
     required init?(coder aDecoder: NSCoder) {

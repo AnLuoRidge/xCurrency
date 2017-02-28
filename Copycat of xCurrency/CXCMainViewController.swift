@@ -12,17 +12,6 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     
     var keyboardView: CXCKeyboardView?// how to init at init?
     var tableViewVC = CXCMainTableViewController()
-    //    var respondingCell: CXCMainTableViewCell {
-    //        let cell:CXCMainTableViewCell
-    //
-    //        if let index = tableViewVC.tableView.indexPathForSelectedRow {
-    //            cell = tableViewVC.tableView.cellForRow(at: index) as! CXCMainTableViewCell
-    //        } else {
-    //            cell = tableViewVC.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! CXCMainTableViewCell
-    //        }
-    //
-    //        return cell
-    //    }
     
     func getFocusedCell(fromFocusedTextField tf: UITextField) -> CXCMainTableViewCell {
         let indexPath = IndexPath.init(row: tf.tag - 1000, section: 0)
@@ -39,27 +28,7 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     }
     
     var previousRespondingTextField = UITextField()
-    //var respondingTextField: UITextField?
-    //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    //        for tf in tableViewVC.textFields {
-    //            tf.te
-    //        }
-    //        return true
-    //    }
-    //
-    //    func textFieldDidEndEditing(_ textField: UITextField) {
-    //
-    //    }
-    
-    
-    
-    //var keyboardView = CXCKeyboardView.init(delegate: self as! CXCKeyboardDelegate)
-    //var keyboardView: CXCKeyboardView
-    
-    //    required init?(coder aDecoder: NSCoder) {// override is implied
-    //        //self.keyboardView = CXCKeyboardView.init(delegate: self)
-    //        super.init(coder: aDecoder)
-    //    }
+
     lazy var leftNaviBtn: UIBarButtonItem = {
         let btn = UIBarButtonItem.init(image: UIImage.init(named: "btn_setting"), style: .plain, target: self, action: nil)
         return btn
@@ -67,6 +36,8 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         self.edgesForExtendedLayout = []
         self.title = NSLocalizedString("极简汇率", comment: "comment")
         self.navigationItem.leftBarButtonItem = leftNaviBtn
@@ -75,13 +46,15 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         self.view.addSubview(keyboardView!)
         self.addChildViewController(tableViewVC)
         self.view.addSubview(tableViewVC.view)
+        if !CXCNetworking.firstLoaded {
+            CXCNetworking.getAllCurrentCurrenciesData {
+                DispatchQueue.main.sync {
+                    self.tableViewVC.tableView.reloadData()
+                }
+            }
+        }
         //        self.observeValue(forKeyPath: "tableViewVC.tableView.indexPathForSelectedRow", of: <#T##Any?#>, change: <#T##[NSKeyValueChangeKey : Any]?#>, context: <#T##UnsafeMutableRawPointer?#>)
         setupConstraints()
-        CXCNetwork.getAllCurrentCurrenciesData()
-        // TODO: open
-        //task.resume()
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func proceedTextFromKeyboard(sender: UIButton) {
@@ -160,37 +133,45 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         // += fail, because getter needs unwrap
         
         //keyboardView?.observeValue(forKeyPath: <#T##String?#>, of: <#T##Any?#>, change: <#T##[NSKeyValueChangeKey : Any]?#>, context: <#T##UnsafeMutableRawPointer?#>)
-        
-        for cell in tableViewVC.cells {
-            print(cell.rate)
-        }
-        print("------")
+//        
+//        for cell in tableViewVC.cells {
+//            print(cell.rate)
+//        }
+//        print("------")
     }
     
     func updateRates(focusedCell:CXCMainTableViewCell) {
         // update rates
         focusedCell.rate = 1.0
         
-        for cell in tableViewVC.cells {
+        for otherCell in tableViewVC.cells {
             // skip focused cell
-            if cell != focusedCell {
-                let currency = focusedCell.currencyLabel.text! + "/" + cell.currencyLabel.text!
-                let reversedCurrency = cell.currencyLabel.text! + "/" + focusedCell.currencyLabel.text!
+            if otherCell != focusedCell {
+                let currency = focusedCell.currencyLabel.text! + "/" + otherCell.currencyLabel.text!
+                let reversedCurrency = otherCell.currencyLabel.text! + "/" + focusedCell.currencyLabel.text!
                 
                 if let rate = currentCurrencyDict[currency] {
-                    cell.rate = rate
+                    otherCell.rate = rate
                 }
                     // reverse
                 else if let rate = currentCurrencyDict[reversedCurrency] {
-                    cell.rate = 1 / rate
+                    otherCell.rate = 1 / rate
                 }
                     // calculate cross-rate
                 else {
-                    let currenyOne = "USD/" + focusedCell.currencyLabel.text!
-                    let currencyTwo = "USD/" + cell.currencyLabel.text!
-                    let rate = 1 / currentCurrencyDict[currenyOne]! * currentCurrencyDict[currencyTwo]!
-                    cell.rate = Float(rate)
-                    currentCurrencyDict.updateValue(cell.rate, forKey: focusedCell.currencyLabel.text! + "/" + cell.currencyLabel.text!)
+                    if otherCell.currencyLabel.text! == "USD"  {
+                        otherCell.rate = 1.0
+                    } else {
+                        let currenyOne = "USD/" + focusedCell.currencyLabel.text!
+                        let currencyTwo = "USD/" + otherCell.currencyLabel.text!
+                        if focusedCell.currencyLabel.text! != "USD" {
+                            otherCell.rate = 1 / currentCurrencyDict[currenyOne]! * currentCurrencyDict[currencyTwo]!
+                        } else {
+                            otherCell.rate = currentCurrencyDict[currencyTwo]!
+                        }
+                    }
+                    
+//                    currentCurrencyDict.updateValue(otherCell.rate, forKey: focusedCell.currencyLabel.text! + "/" + otherCell.currencyLabel.text!)
                     //(1/美中) x 中日
                 }
             }

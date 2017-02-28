@@ -18,6 +18,13 @@ class CXCMainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.navigationItem.leftBarButtonItem = leftBtn
+        self.navigationBar.tintColor = UIColor(hex: "#99A4BF 100%")
+        
+//        UIBarButtonItem.setBackButtonTitlePositionAdjustment(UIBarMetrics.init(rawValue: 0))
+        
+//        UIBarButtonItem.appearance().
+//        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+//            forBarMetrics:UIBarMetricsDefault];
         self.pushViewController(CXCMainViewController(), animated: true)
     }
 

@@ -26,8 +26,6 @@ var rates = [CGFloat]()
 
         if rates.count > 0 {
             
-            let realMax = rates.max()
-            let realMin = rates.min()
             // reduce to 20
             let num = rates.count / 20
             var group = [CGFloat]()

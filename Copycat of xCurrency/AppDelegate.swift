@@ -21,13 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
 
         self.performSelector(inBackground: #selector(refreshCurrentCurrencies), with: nil)
-        
+        CXCNetworking.getAllCurrentCurrenciesData{
+        CXCNetworking.firstLoaded = true
+        }
         return true
     }
     
     func refreshCurrentCurrencies() {
         Timer.scheduledTimer(withTimeInterval: 3600.0, repeats: true) { _ in //(<#Timer#>) in
-            CXCNetwork.getAllCurrentCurrenciesData()
+            CXCNetworking.getAllCurrentCurrenciesData{}
         }
         RunLoop.current.run()
         //此种方式创建的timer已经添加至runloop中

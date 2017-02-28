@@ -8,11 +8,11 @@
 
 import UIKit
 
-class CXCNetwork: NSObject {
+class CXCNetworking: NSObject {
     
+    static var firstLoaded = false
     
-    
-    class func getAllCurrentCurrenciesData() {
+    class func getAllCurrentCurrenciesData(completion:@escaping ()->Void) {
         let session = URLSession.init(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: URL.init(string: "https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json")!) { (data, response, error) in
             
@@ -34,7 +34,7 @@ class CXCNetwork: NSObject {
                         
                         
                     }
-                    //}
+                    completion()
                 }
             } catch {
                 
