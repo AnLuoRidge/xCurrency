@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow? = UIWindow.init(frame: UIScreen.main.bounds)
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         self.window = window!
         self.window?.backgroundColor = .white
@@ -29,15 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func refreshCurrentCurrencies() {
+    @objc func refreshCurrentCurrencies() {
         Timer.scheduledTimer(withTimeInterval: 3600.0, repeats: true) { _ in //(<#Timer#>) in
             CXCNetworking.getAllCurrentCurrenciesData{}
         }
         RunLoop.current.run()
-        //此种方式创建的timer已经添加至runloop中
-        //        [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-        //保持线程为活动状态，才能保证定时器执行
-        //        [[NSRunLoop currentRunLoop] run];//已经将nstimer添加到NSRunloop中了
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

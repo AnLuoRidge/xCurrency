@@ -71,8 +71,8 @@ class CXCHistoricalRateLineView: UIView {
             // set line as mask layer
             let lineMaskLayer = CAShapeLayer()
             lineMaskLayer.frame = self.bounds
-            lineMaskLayer.lineCap = kCALineCapRound
-            lineMaskLayer.lineJoin = kCALineJoinRound
+            lineMaskLayer.lineCap = CAShapeLayerLineCap.round
+            lineMaskLayer.lineJoin = CAShapeLayerLineJoin.round
             lineMaskLayer.lineWidth = 1.0
             lineMaskLayer.path = linePath.cgPath
             lineMaskLayer.strokeColor = UIColor.white.cgColor

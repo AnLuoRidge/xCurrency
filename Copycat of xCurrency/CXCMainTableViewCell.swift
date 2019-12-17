@@ -94,7 +94,7 @@ class CXCMainTableViewCell: UITableViewCell {
     
     var rate: Float = 1.0
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor = UIColor(hex: "#F2F4F7")

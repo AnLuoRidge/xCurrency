@@ -24,7 +24,7 @@ class CXCRatesDetailView: UIView {
         let btn = UIButton(type: .custom)
         btn.setTitleColor(.black, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 20.0)
-        btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
+        btn.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: -10)
         return btn
     }()
     
@@ -32,7 +32,7 @@ class CXCRatesDetailView: UIView {
         let btn = UIButton(type: .custom)
         btn.setTitleColor(.black, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 20.0)
-        btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
+        btn.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: -10)
         return btn
     }()
     
@@ -57,7 +57,7 @@ class CXCRatesDetailView: UIView {
         let btn = UIButton(type: .custom)
         btn.setTitle(NSLocalizedString("1M", comment: ""), for: .normal)
         btn.setTitleColor(dateButtonNormalColor, for: .normal)
-        btn.setTitleColor(dateButtonSelectedColor, for: UIControlState.selected)
+        btn.setTitleColor(dateButtonSelectedColor, for: UIControl.State.selected)
         btn.addTarget(self, action: #selector(dateButtonsSelected(sender:)), for: .touchUpInside)
         return btn
     }()
@@ -126,7 +126,7 @@ class CXCRatesDetailView: UIView {
         return lbl
     }()
     
-    func dateButtonsSelected(sender btn:UIButton) {
+    @objc func dateButtonsSelected(sender btn:UIButton) {
         btn.isSelected = true
         for button in dateButtons {
             if button != btn {
@@ -144,7 +144,7 @@ class CXCRatesDetailView: UIView {
         ratesOne = nil
         ratesTwo = nil
         
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let spinner = UIActivityIndicatorView(style: .medium)
         spinner.frame = CGRect(origin: CGPoint(x:screenWidth/2 - 25.xppi, y: 390.yppi), size: CGSize(width: 25.xppi, height: 25.yppi))
         spinner.startAnimating()
         self.addSubview(spinner)
@@ -323,9 +323,14 @@ class CXCRatesDetailView: UIView {
     
     func setupConstraints() {
         
-        let btnOffset = 57.0
+        let btnOffset = screenWidth == 375 ? 40 : 57.0 // FIXME: 
         let btnWidth = 30
         let btnHeight = 10
+        
+        /*
+         let btnOffset = screenWidth == 375 ? 40 : 57.0 // FIXME:
+         xppi
+         */
         
         exchageButton.snp.makeConstraints { make in
             make.centerX.equalTo(self)
@@ -334,19 +339,19 @@ class CXCRatesDetailView: UIView {
         }
         
         flagOneButton.snp.makeConstraints { make in
-            make.right.equalTo(exchageButton.snp.left).offset(-50)
-            make.width.equalTo(90)
+            make.right.equalTo(exchageButton.snp.left).offset(-50.xppi)
+            make.width.equalTo(90.xppi)
             make.centerY.equalTo(exchageButton)
         }
         
         flagTwoButton.snp.makeConstraints { make in
-            make.left.equalTo(exchageButton.snp.right).offset(50)
-            make.width.equalTo(90)
+            make.left.equalTo(exchageButton.snp.right).offset(50.xppi)
+            make.width.equalTo(90.xppi)
             make.centerY.equalTo(exchageButton)
         }
         
         sevenDaysButton.snp.makeConstraints { make in
-            make.left.equalTo(self).offset(19.0)
+            make.left.equalTo(self).offset(19.0.xppi)
             make.top.equalTo(263.yppi)
             make.width.equalTo(btnWidth)
             make.height.equalTo(btnHeight)
@@ -426,7 +431,7 @@ class CXCRatesDetailView: UIView {
         pathLine.stroke()
     }
     
-    func exchangeCurrencies() {
+    @objc func exchangeCurrencies() {
         swap(&currencyOne, &currencyTwo)
         setupFlags()
         drawRateLines(time: selectTime)

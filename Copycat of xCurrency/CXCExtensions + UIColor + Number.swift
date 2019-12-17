@@ -31,9 +31,9 @@ import UIKit
 //}
 extension UIColor {
     convenience init(hex: String) {
-        let hexWithoutSharp = hex.substring(from: hex.index(after: hex.startIndex))
+        let hexWithoutSharp = String(hex[hex.index(after: hex.startIndex)...])
         let scanner = Scanner(string: hexWithoutSharp)
-        scanner.scanLocation = 0
+//        scanner.scanLocation = 0
         
         var rgbValue: UInt64 = 0
         

@@ -10,7 +10,7 @@ import UIKit
 
 class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     
-    var keyboardView: CXCKeyboardView?// how to init at init?
+    var keyboardView: CXCKeyboardView? // how to init at init?
     var tableViewVC = CXCMainTableViewController()
     
     func getFocusedCell(fromFocusedTextField tf: UITextField) -> CXCMainTableViewCell {
@@ -39,13 +39,14 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         self.edgesForExtendedLayout = []
-        self.title = NSLocalizedString("xCurrency", comment: "")// 极简汇率
+        self.title = NSLocalizedString("xCurrency", comment: "")
         self.navigationItem.leftBarButtonItem = leftNaviBtn
         self.view.backgroundColor = .white
         keyboardView = CXCKeyboardView.init(delegate: self)
         self.view.addSubview(keyboardView!)
-        self.addChildViewController(tableViewVC)
+        self.addChild(tableViewVC)
         self.view.addSubview(tableViewVC.view)
+        
         if !CXCNetworking.firstLoaded {
             CXCNetworking.getAllCurrentCurrenciesData {
                 DispatchQueue.main.sync {
@@ -70,21 +71,20 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
             }
             
             let key = sender.title(for: .normal)!
-            let val:Float?
+            let val: Float?
             
             switch key {
-            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
+            case "0"..."9":
                 val = Float(respondingTF.text! + key)!
             case ".":
                 val = Float(respondingTF.text!)
             case "del":
-                if respondingTF.text!.characters.count > 1 {
+                if respondingTF.text != nil {
                     let endIndex = respondingTF.text!.index(before: respondingTF.text!.endIndex)
-                    val = Float(respondingTF.text!.substring(to: endIndex))!
+                    val = Float(respondingTF.text![..<endIndex])!
                 } else {
                     val = nil
                 }
-                
             default:
                 val = nil
             }
@@ -97,34 +97,33 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
                             if !(respondingTF.text!.contains(".") && key == "."){
                                 cell.numTextField.text = previousText + key
                             }
-                        }
-                        else {
+                        } else {
                             let endIndex = previousText.index(before: previousText.endIndex)
-                            cell.numTextField.text = previousText.substring(to: endIndex)
+                            cell.numTextField.text = String(previousText[..<endIndex])
                         }
-                    }
-                    else {
-                        cell.numTextField.text = String(value * cell.rate)
+                    } else {
+                        var result = String(value * cell.rate)
+                        if result.count > 6 {
+                            let endIndex = result.index(result.startIndex, offsetBy: 6)
+                            result = String(result[...endIndex])
+                        }
+                        cell.numTextField.text = result
                     }
                 }
-                // if clear
-            }
-            else {
+                // TODO: clear if-else hell
+            } else {
                 for cell in tableViewVC.cells {
                     cell.numTextField.text = nil
                     if cell == focusedCell {
                         cell.numTextField.placeholder = "100.0"
-                    }
-                    else {
+                    } else {
                         cell.numTextField.placeholder = String(100 * cell.rate)}
                 }
             }
-            
         }
     }
     
-    func updateRates(focusedCell:CXCMainTableViewCell) {
-        // update rates
+    func updateRates(focusedCell: CXCMainTableViewCell) {
         focusedCell.rate = 1.0
         
         for otherCell in tableViewVC.cells {
@@ -135,25 +134,25 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
                 
                 if let rate = currentCurrencyDict[currency] {
                     otherCell.rate = rate
-                }
-                    // reverse
-                else if let rate = currentCurrencyDict[reversedCurrency] {
+                } else if let rate = currentCurrencyDict[reversedCurrency] {
                     otherCell.rate = 1 / rate
-                }
-                    // calculate cross-rate
-                else {
+                } else {
                     if otherCell.currencyLabel.text! == "USD"  {
                         otherCell.rate = 1.0
                     } else {
                         let currenyOne = "USD/" + focusedCell.currencyLabel.text!
                         let currencyTwo = "USD/" + otherCell.currencyLabel.text!
                         if focusedCell.currencyLabel.text! != "USD" {
+                            if currentCurrencyDict[currenyOne] != nil && currentCurrencyDict[currencyTwo] != nil {
                             otherCell.rate = 1 / currentCurrencyDict[currenyOne]! * currentCurrencyDict[currencyTwo]!
+                            } else {
+                                otherCell.rate = 1.0
+                            }
                         } else {
                             otherCell.rate = currentCurrencyDict[currencyTwo]!
                         }
                     }
-                    //(1/AB) x BC
+                    // (1/AB) x BC
                 }
             }
         }
@@ -176,4 +175,3 @@ class CXCMainViewController: UIViewController, CXCKeyboardDelegate {
     }
     
 }
-
